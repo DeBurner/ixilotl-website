@@ -104,9 +104,11 @@ img{ max-width:100%; display:block; }
 }
 .btn-ghost:hover{ background:rgba(255,255,255,0.16); }
 
-.hero-art{ flex:1 1 260px; display:flex; justify-content:center; }
+.hero-art{ flex:1 1 380px; display:flex; justify-content:center; }
 .hero-art img{
-  width:min(320px, 70vw);
+  width:min(600px, 90vw);
+  height:auto;
+  border-radius:20px;
   filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35));
 }
 
