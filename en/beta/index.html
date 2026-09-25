@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beta Access – Ixilotl</title>
+<meta name="description" content="How to join the Ixilotl closed beta: share your Play Store email address, receive an invitation, install the app. Currently Android only.">
+<link rel="icon" type="image/png" href="../../images/ixilotl-icon.png">
+<link rel="apple-touch-icon" href="../../images/ixilotl-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="hero hero-slim">
+  <nav class="nav">
+    <a class="logo" href="../">Ixilotl</a>
+    <div class="nav-links">
+      <div class="lang-switch"><a href="../../beta/">DE</a><a class="active" href="./">EN</a></div>
+      <a class="link" href="../datenschutz/">Privacy</a>
+      <a class="link" href="../impressum/">Legal Notice</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="badge">Closed Beta</span>
+      <h1>Request <span>beta access</span></h1>
+      <p>Ixilotl isn't publicly available on the Play Store yet. During the closed test phase we unlock testers one by one – all we need from you is one piece of information.</p>
+    </div>
+  </div>
+
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none">
+    <path fill="#ffffff" d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,42.7C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,90L0,90Z"></path>
+  </svg>
+</div>
+
+<main>
+<div class="beta-wrap">
+
+  <div class="notice">
+    <span class="icon">📱</span>
+    <div>
+      <strong>Currently Android only</strong>
+      <p>The beta currently runs exclusively through the Google Play Store. There is no version for iPhone or iPad yet – it will follow later.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><strong>Fill in the form:</strong> Enter the email address of the Google account that is signed in to the Play Store on the Android device your child will play on.</li>
+      <li><strong>Send the email:</strong> When you click “Create request”, your email app opens with a pre-filled message to us. You just need to send it.</li>
+      <li><strong>Activation:</strong> We add your address to the tester list and get back to you with the link to the test version – usually within a few days.</li>
+      <li><strong>Install:</strong> Open the link on the Android device, tap “Become a tester”, then install Ixilotl from the Play Store as usual.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Where do I find my Play Store email address?</h2>
+    <p>It has to be exactly the address the Play Store is signed in with on your child's device – the test version only becomes visible for that account. It is always a Google address (usually <em>…@gmail.com</em>).</p>
+    <details class="findmail" open>
+      <summary>Here's how to find it</summary>
+      <ol>
+        <li>Open the <strong>Google Play Store</strong> app on the Android device.</li>
+        <li>Tap the <strong>round profile picture</strong> (or initial) in the top right corner.</li>
+        <li>The <strong>email address</strong> of the active account is shown right below the name. The small arrow next to it shows whether other accounts are signed in.</li>
+      </ol>
+      <p>Alternatively: <strong>Settings → Google</strong> (or <strong>Accounts</strong>) – the signed-in Google account is shown at the top.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Send your request</h2>
+    <form class="beta-form" id="beta-form" novalidate>
+      <div class="field">
+        <label for="playmail">Play Store email address</label>
+        <input type="email" id="playmail" name="playmail" required autocomplete="email" placeholder="name@gmail.com">
+        <span class="hint">The Google account on the Android device your child will play on.</span>
+      </div>
+      <div class="field">
+        <label for="name">Name <span class="opt">(optional)</span></label>
+        <input type="text" id="name" name="name" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="grade">Child's school year <span class="opt">(optional)</span></label>
+        <select id="grade" name="grade">
+          <option value="">– please select –</option>
+          <option>Pre-school</option>
+          <option>Year 1</option>
+          <option>Year 2</option>
+          <option>Year 3</option>
+          <option>Year 4</option>
+          <option>Year 5 or older</option>
+          <option>Several children</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="msg">Message to us <span class="opt">(optional)</span></label>
+        <textarea id="msg" name="msg" placeholder="How did you hear about Ixilotl? Anything we should know?"></textarea>
+      </div>
+      <label class="check"><input type="checkbox" id="android" required> The device my child will play on is an Android phone or tablet.</label>
+      <p class="form-note">Your details only end up in the email you send yourself – this website doesn't store anything. We use the address solely to add you as a tester in the Play Store and to contact you about the beta. More in the <a href="../datenschutz/">privacy policy</a>.</p>
+      <button type="submit" class="btn btn-primary">Create request</button>
+    </form>
+
+    <div class="fallback" id="fallback">
+      <p><strong>No email app opened?</strong> Just copy this text and send it to <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a>:</p>
+      <pre id="fallback-text"></pre>
+      <button type="button" class="btn btn-small" id="copy-btn">Copy text</button>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <span>Ixilotl · Sumpfsoftware Studio · Sebastian Buhl</span>
+  <span><a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a> · <a href="../datenschutz/">Privacy</a> · <a href="../impressum/">Legal Notice</a></span>
+</footer>
+
+<script>
+(function () {
+  var T = {
+    to: 'ixilotl.app@gmail.com',
+    subject: 'Ixilotl beta access',
+    toLabel: 'To',
+    subjectLabel: 'Subject',
+    errMail: 'Please enter a valid email address.',
+    errAndroid: 'The beta is currently only available for Android devices.',
+    copied: 'Copied ✓',
+    lines: function (d) {
+      return [
+        'Hello Ixilotl team,',
+        '',
+        "I'd like to join the Ixilotl closed beta.",
+        '',
+        'Play Store email address: ' + d.playmail,
+        'Name: ' + (d.name || '–'),
+        'School year: ' + (d.grade || '–'),
+        'Device: Android',
+        '',
+        'Message:',
+        d.msg || '–'
+      ];
+    }
+  };
+
+  var form = document.getElementById('beta-form');
+  var mail = document.getElementById('playmail');
+  var android = document.getElementById('android');
+  var fallback = document.getElementById('fallback');
+  var fallbackText = document.getElementById('fallback-text');
+  var copyBtn = document.getElementById('copy-btn');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    mail.setCustomValidity('');
+    android.setCustomValidity('');
+    mail.value = mail.value.trim();
+    if (!mail.checkValidity() || !mail.value) {
+      mail.setCustomValidity(T.errMail);
+      mail.reportValidity();
+      return;
+    }
+    if (!android.checked) {
+      android.setCustomValidity(T.errAndroid);
+      android.reportValidity();
+      return;
+    }
+    var d = {
+      playmail: mail.value,
+      name: document.getElementById('name').value.trim(),
+      grade: document.getElementById('grade').value,
+      msg: document.getElementById('msg').value.trim()
+    };
+    var body = T.lines(d).join('\r\n');
+    fallbackText.textContent = body;
+    fallback.classList.add('show');
+    window.location.href = 'mailto:' + T.to +
+      '?subject=' + encodeURIComponent(T.subject) +
+      '&body=' + encodeURIComponent(body);
+  });
+
+  mail.addEventListener('input', function () { mail.setCustomValidity(''); });
+  android.addEventListener('change', function () { android.setCustomValidity(''); });
+
+  copyBtn.addEventListener('click', function () {
+    var text = T.toLabel + ': ' + T.to + '\n' + T.subjectLabel + ': ' + T.subject + '\n\n' + fallbackText.textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function () { copyBtn.textContent = T.copied; });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
