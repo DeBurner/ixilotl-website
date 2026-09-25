@@ -51,7 +51,7 @@
   <section>
     <h2>So funktioniert's</h2>
     <ol class="steps">
-      <li><strong>Formular ausfüllen:</strong> Trag unten die E-Mail-Adresse des Google-Kontos ein, das im Play Store auf dem Android-Gerät angemeldet ist, auf dem Ixilotl gespielt werden soll.</li>
+      <li><strong>Formular ausfüllen:</strong> Trag unten die E-Mail-Adresse des Google-Kontos ein, das im Play Store auf deinem Android-Gerät angemeldet ist.</li>
       <li><strong>E-Mail absenden:</strong> Beim Klick auf „Anfrage erstellen" öffnet sich dein E-Mail-Programm mit einer fertig ausgefüllten Nachricht an uns. Du musst sie nur noch abschicken.</li>
       <li><strong>Freischaltung:</strong> Wir tragen deine Adresse in die Testerliste ein und melden uns mit dem Link zur Testversion – in der Regel innerhalb weniger Tage.</li>
       <li><strong>Installieren:</strong> Link auf dem Android-Gerät öffnen, „Tester werden" antippen und Ixilotl anschließend ganz normal über den Play Store installieren.</li>
@@ -60,7 +60,7 @@
 
   <section>
     <h2>Wo finde ich meine Play-Store-E-Mail-Adresse?</h2>
-    <p>Wichtig ist genau die Adresse, mit der der Play Store auf dem Gerät des Kindes angemeldet ist – nur für dieses Konto wird die Testversion sichtbar. Es ist immer eine Google-Adresse (meist <em>…@gmail.com</em>).</p>
+    <p>Wichtig ist genau die Adresse, mit der der Play Store auf dem Gerät angemeldet ist, auf dem du Ixilotl installieren willst – nur für dieses Konto wird die Testversion sichtbar. Es ist immer eine Google-Adresse (meist <em>…@gmail.com</em>).</p>
     <details class="findmail" open>
       <summary>So findest du sie</summary>
       <ol>
@@ -78,30 +78,17 @@
       <div class="field">
         <label for="playmail">Play-Store-E-Mail-Adresse</label>
         <input type="email" id="playmail" name="playmail" required autocomplete="email" placeholder="name@gmail.com">
-        <span class="hint">Das Google-Konto auf dem Android-Gerät, auf dem gespielt wird.</span>
+        <span class="hint">Das Google-Konto, mit dem der Play Store auf deinem Android-Gerät angemeldet ist.</span>
       </div>
       <div class="field">
         <label for="name">Name <span class="opt">(optional)</span></label>
         <input type="text" id="name" name="name" autocomplete="name">
       </div>
       <div class="field">
-        <label for="grade">Klassenstufe des Kindes <span class="opt">(optional)</span></label>
-        <select id="grade" name="grade">
-          <option value="">– bitte wählen –</option>
-          <option>Vorschule</option>
-          <option>1. Klasse</option>
-          <option>2. Klasse</option>
-          <option>3. Klasse</option>
-          <option>4. Klasse</option>
-          <option>5. Klasse oder älter</option>
-          <option>Mehrere Kinder</option>
-        </select>
-      </div>
-      <div class="field">
         <label for="msg">Nachricht an uns <span class="opt">(optional)</span></label>
         <textarea id="msg" name="msg" placeholder="Wie bist du auf Ixilotl aufmerksam geworden? Gibt es etwas, das wir wissen sollten?"></textarea>
       </div>
-      <label class="check"><input type="checkbox" id="android" required> Das Gerät, auf dem gespielt werden soll, ist ein Android-Smartphone oder -Tablet.</label>
+      <label class="check"><input type="checkbox" id="android" required> Mein Gerät ist ein Android-Smartphone oder -Tablet.</label>
       <p class="form-note">Deine Angaben landen ausschließlich in der E-Mail, die du selbst abschickst – die Website speichert nichts. Wir nutzen die Adresse nur, um dich als Tester im Play Store freizuschalten und dich zur Beta zu kontaktieren. Mehr in der <a href="../datenschutz/">Datenschutzerklärung</a>.</p>
       <button type="submit" class="btn btn-primary">Anfrage erstellen</button>
     </form>
@@ -137,7 +124,6 @@
         '',
         'Play-Store-E-Mail-Adresse: ' + d.playmail,
         'Name: ' + (d.name || '–'),
-        'Klassenstufe: ' + (d.grade || '–'),
         'Gerät: Android',
         '',
         'Nachricht:',
@@ -171,7 +157,6 @@
     var d = {
       playmail: mail.value,
       name: document.getElementById('name').value.trim(),
-      grade: document.getElementById('grade').value,
       msg: document.getElementById('msg').value.trim()
     };
     var body = T.lines(d).join('\r\n');

@@ -51,7 +51,7 @@
   <section>
     <h2>How it works</h2>
     <ol class="steps">
-      <li><strong>Fill in the form:</strong> Enter the email address of the Google account that is signed in to the Play Store on the Android device your child will play on.</li>
+      <li><strong>Fill in the form:</strong> Enter the email address of the Google account that is signed in to the Play Store on your Android device.</li>
       <li><strong>Send the email:</strong> When you click “Create request”, your email app opens with a pre-filled message to us. You just need to send it.</li>
       <li><strong>Activation:</strong> We add your address to the tester list and get back to you with the link to the test version – usually within a few days.</li>
       <li><strong>Install:</strong> Open the link on the Android device, tap “Become a tester”, then install Ixilotl from the Play Store as usual.</li>
@@ -60,7 +60,7 @@
 
   <section>
     <h2>Where do I find my Play Store email address?</h2>
-    <p>It has to be exactly the address the Play Store is signed in with on your child's device – the test version only becomes visible for that account. It is always a Google address (usually <em>…@gmail.com</em>).</p>
+    <p>It has to be exactly the address the Play Store is signed in with on the device you want to install Ixilotl on – the test version only becomes visible for that account. It is always a Google address (usually <em>…@gmail.com</em>).</p>
     <details class="findmail" open>
       <summary>Here's how to find it</summary>
       <ol>
@@ -78,30 +78,17 @@
       <div class="field">
         <label for="playmail">Play Store email address</label>
         <input type="email" id="playmail" name="playmail" required autocomplete="email" placeholder="name@gmail.com">
-        <span class="hint">The Google account on the Android device your child will play on.</span>
+        <span class="hint">The Google account the Play Store is signed in with on your Android device.</span>
       </div>
       <div class="field">
         <label for="name">Name <span class="opt">(optional)</span></label>
         <input type="text" id="name" name="name" autocomplete="name">
       </div>
       <div class="field">
-        <label for="grade">Child's school year <span class="opt">(optional)</span></label>
-        <select id="grade" name="grade">
-          <option value="">– please select –</option>
-          <option>Pre-school</option>
-          <option>Year 1</option>
-          <option>Year 2</option>
-          <option>Year 3</option>
-          <option>Year 4</option>
-          <option>Year 5 or older</option>
-          <option>Several children</option>
-        </select>
-      </div>
-      <div class="field">
         <label for="msg">Message to us <span class="opt">(optional)</span></label>
         <textarea id="msg" name="msg" placeholder="How did you hear about Ixilotl? Anything we should know?"></textarea>
       </div>
-      <label class="check"><input type="checkbox" id="android" required> The device my child will play on is an Android phone or tablet.</label>
+      <label class="check"><input type="checkbox" id="android" required> My device is an Android phone or tablet.</label>
       <p class="form-note">Your details only end up in the email you send yourself – this website doesn't store anything. We use the address solely to add you as a tester in the Play Store and to contact you about the beta. More in the <a href="../datenschutz/">privacy policy</a>.</p>
       <button type="submit" class="btn btn-primary">Create request</button>
     </form>
@@ -139,7 +126,6 @@
         '',
         'Play Store email address: ' + d.playmail,
         'Name: ' + (d.name || '–'),
-        'School year: ' + (d.grade || '–'),
         'Device: Android',
         '',
         'Message:',
@@ -173,7 +159,6 @@
     var d = {
       playmail: mail.value,
       name: document.getElementById('name').value.trim(),
-      grade: document.getElementById('grade').value,
       msg: document.getElementById('msg').value.trim()
     };
     var body = T.lines(d).join('\r\n');
