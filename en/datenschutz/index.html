@@ -53,7 +53,7 @@ Email: <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a></p>
 <p>Ixilotl stores the game state locally on the device: learning progress (every task with answer
 times and results), settings, and the name entered in the game. <strong>Learning progress and the
 name never leave the device</strong> and are not shared with third parties. Some settings are
-transmitted as usage data (see below).</p>
+transmitted as usage data – only with consent (see below).</p>
 <p>The app additionally uses Firebase Crashlytics and Firebase Analytics (see below). There is no
 user account and no chat feature. The app shows <strong>no advertising</strong> – neither
 personalized nor of any other kind.</p>
@@ -74,14 +74,26 @@ transmit the following information:</p>
 <p>This data is not linked to a user account (there is none) and contains no information that
 allows direct identification of a person. There is <strong>no personalized advertising</strong>
 and the device's advertising ID is not used for this purpose.</p>
-<p>This data collection is active by default but can be turned off at any time in the
-<strong>app's settings</strong> via the "Send usage & crash data" toggle.<br>
+<p>This data is only collected <strong>if a parent has given consent beforehand</strong>, separately
+for each of the two services (see "Consent by parents"). Without consent, Firebase is not started in
+the app at all.<br>
 More information: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
-<h2>Legal basis</h2>
-<p>Processing of crash and usage data is based on our legitimate interest (Art. 6(1)(f) GDPR) in
-fixing bugs, ensuring stability, and improving the app. Since this collection is active by default,
-you have the right to object at any time via the toggle described above.</p>
+<h2 id="consent">Consent by parents and legal basis</h2>
+<p>On first launch (or once after the update) the app asks in the <strong>"For parents"</strong>
+area whether the two data shares are allowed. The child is asked to hand the device to a parent;
+before the question there is a quick check for adults (entering the year of birth, which is not
+stored). Parents can allow <strong>usage statistics</strong> (Firebase Analytics) and <strong>crash
+reports</strong> (Firebase Crashlytics) separately; both are off by default. "Allow none" or
+"Later" keeps everything off – the app then works without any restriction.</p>
+<p>The legal basis is your <strong>consent</strong> (Art. 6(1)(a) GDPR and § 25(1) of the German
+TDDDG for access to the device). As the app is aimed at children, consent is given by a parent
+(Art. 8 GDPR). The decision, its time and the version of the consent text are stored locally on the
+device only.</p>
+<p><strong>Withdrawal:</strong> you can withdraw your consent at any time with effect for the future
+under <strong>Settings (gear icon) → Game → "Privacy (for parents)"</strong>. Turning off requires no
+check; transmission stops immediately. The lawfulness of processing before the withdrawal remains
+unaffected (Art. 7(3) GDPR).</p>
 
 <h2>International data transfers</h2>
 <p>Firebase Crashlytics and Firebase Analytics are provided by Google LLC and/or Google Ireland
@@ -109,7 +121,8 @@ Clauses (Art. 46 GDPR). Details:
   <li>Right to erasure (Art. 17 GDPR)</li>
   <li>Right to restriction of processing (Art. 18 GDPR)</li>
   <li>Right to data portability (Art. 20 GDPR)</li>
-  <li>Right to object to processing (Art. 21 GDPR)</li>
+  <li>Right to object to processing (Art. 21 GDPR), where it is based on legitimate interest</li>
+  <li>Right to withdraw consent (Art. 7(3) GDPR)</li>
 </ul>
 <p>Since learning progress is stored exclusively locally on the device, these rights in practice
 mainly concern the crash/usage data collected via Firebase. You also have the right to lodge a
@@ -127,14 +140,16 @@ by email to a specific person's data (Art. 11 GDPR).</p>
 <p>Deletion therefore works directly on the device:</p>
 <ol>
   <li>Open Ixilotl</li>
-  <li>Open <strong>Settings</strong></li>
-  <li>Turn off the <strong>"Send usage & crash data"</strong> toggle</li>
+  <li>Open <strong>Settings</strong> (gear icon) → <strong>Game</strong></li>
+  <li>Under <strong>"Privacy (for parents)"</strong>, turn off <strong>Usage statistics</strong> and
+    <strong>Crash reports</strong></li>
 </ol>
 <p>This immediately stops transmission and resets the app's device identifier in Firebase
 Analytics — severing the link between your device and all previously collected pseudonymous data.
 Local learning progress is unaffected (it is stored exclusively on the device and never sent to
 us); it can be removed separately by uninstalling the app.</p>
-<p>There is no equivalent on-device reset for Crashlytics crash reports; these are subject to
+<p>Crash reports not yet sent are deleted on the device without consent. There is no on-device
+reset for crash reports already sent; these are subject to
 automatic deletion after 90 days (see "Retention period" above). For anything
 beyond this — for example if you can provide additional information to identify your specific
 data, or for general questions about deletion — contact us at
@@ -145,8 +160,8 @@ data, or for general questions about deletion — contact us at
 <p>Ixilotl is aimed at primary-school-age children. The app does not collect personal data that
 would allow identification of a child. There is no chat feature, no social networks, and no
 advertising. The name entered in the game and the learning progress stay on the device only.
-Parents can disable the usage-data collection described above at any time in the app's
-settings.</p>
+Usage and crash data are only transmitted if a parent has consented (see "Consent by parents");
+consent can be withdrawn at any time in the settings.</p>
 
 <h2>In-app purchases</h2>
 <p>The app currently offers no purchases. A full version is planned as a one-time purchase through

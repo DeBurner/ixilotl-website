@@ -53,7 +53,7 @@ E-Mail: <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a></p>
 <p>Ixilotl speichert den Spielstand lokal auf dem Gerät: den Lernfortschritt (alle Aufgaben mit
 Antwortzeiten und Ergebnissen), die Einstellungen und den im Spiel eingegebenen Namen.
 <strong>Lernfortschritt und Name verlassen das Gerät nicht</strong> und werden nicht an Dritte
-übermittelt. Einzelne Einstellungen werden als Nutzungsdaten übermittelt (siehe unten).</p>
+übermittelt. Einzelne Einstellungen werden – nur mit Einwilligung – als Nutzungsdaten übermittelt (siehe unten).</p>
 <p>Zusätzlich verwendet die App Firebase Crashlytics und Firebase Analytics (siehe unten). Es gibt
 kein Benutzerkonto und keine Chat-Funktion. Die App zeigt <strong>keine Werbung</strong> – weder
 personalisiert noch auf andere Weise.</p>
@@ -61,7 +61,10 @@ personalisiert noch auf andere Weise.</p>
 <h2>Absturz- und Nutzungsdaten (Firebase Crashlytics &amp; Analytics)</h2>
 <p>Die App verwendet <strong>Firebase Crashlytics</strong> und <strong>Firebase Analytics</strong>
 (Google LLC), um Abstürze zu erkennen und zu verstehen, wie die App genutzt wird, damit wir sie
-verbessern können. Dabei können folgende Informationen übermittelt werden:</p>
+verbessern können — <strong>aber nur, wenn ein Elternteil zuvor eingewilligt hat</strong>, und zwar
+für beide Dienste getrennt (siehe „Einwilligung durch die Eltern“). Ohne Einwilligung wird Firebase
+in der App gar nicht erst gestartet. Mit Einwilligung können folgende Informationen übermittelt
+werden:</p>
 <ul>
   <li>Gerätemodell, Betriebssystemversion, grobe Standortregion (Land bzw. Region, aus der
     IP-Adresse abgeleitet, nicht präzise)</li>
@@ -75,16 +78,24 @@ verbessern können. Dabei können folgende Informationen übermittelt werden:</p
 Informationen, die eine direkte Identifizierung von Personen ermöglichen. Es findet <strong>keine
 personalisierte Werbung</strong> statt und die Werbe-ID des Geräts wird nicht zu diesem Zweck
 verwendet.</p>
-<p>Diese Datenerhebung ist standardmäßig aktiv, kann aber jederzeit in den
-<strong>Einstellungen der App</strong> über den Schalter „Nutzungs- und Fehlerdaten senden“
-deaktiviert werden.<br>
-Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+<p>Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
-<h2>Rechtsgrundlage</h2>
-<p>Die Verarbeitung der Absturz- und Nutzungsdaten stützt sich auf unser berechtigtes Interesse
-(Art. 6 Abs. 1 lit. f DSGVO) an der Fehlerbehebung, Stabilität und Weiterentwicklung der App. Da die
-Erhebung standardmäßig aktiv ist, steht Ihnen jederzeit ein Widerspruchsrecht über den beschriebenen
-Schalter in den Einstellungen zu.</p>
+<h2 id="einwilligung">Einwilligung durch die Eltern und Rechtsgrundlage</h2>
+<p>Beim ersten Start (bzw. einmalig nach dem Update) fragt die App im Bereich <strong>„Für
+Eltern“</strong>, ob die beiden Datenfreigaben erlaubt werden. Das Kind wird gebeten, das Gerät den
+Eltern zu geben; vor der Abfrage steht eine kurze Prüfung für Erwachsene (Eingabe des Geburtsjahres,
+die nicht gespeichert wird). Die Eltern können <strong>Nutzungsstatistik</strong> (Firebase
+Analytics) und <strong>Absturzberichte</strong> (Firebase Crashlytics) getrennt erlauben; beide sind
+voreingestellt aus. „Keine erlauben“ oder „Später“ lässt alles aus – die App funktioniert dann
+uneingeschränkt.</p>
+<p>Rechtsgrundlage ist Ihre <strong>Einwilligung</strong> (Art. 6 Abs. 1 lit. a DSGVO sowie § 25
+Abs. 1 TDDDG für den Zugriff auf das Endgerät). Da sich die App an Kinder richtet, wird die
+Einwilligung von einem Elternteil erteilt (Art. 8 DSGVO). Entscheidung, Zeitpunkt und Version des
+Einwilligungstextes werden nur lokal auf dem Gerät gespeichert.</p>
+<p><strong>Widerruf:</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft
+widerrufen, unter <strong>Einstellungen (Zahnrad) → Spiel → „Datenschutz (für Eltern)“</strong>.
+Ausschalten geht ohne Prüfung; die Übermittlung endet sofort. Die Rechtmäßigkeit der bis zum Widerruf
+erfolgten Verarbeitung bleibt unberührt (Art. 7 Abs. 3 DSGVO).</p>
 
 <h2>Internationale Datenübermittlung</h2>
 <p>Firebase Crashlytics und Firebase Analytics werden von Google LLC bzw. Google Ireland Limited
@@ -115,7 +126,9 @@ personenbezogenen Daten zu:</p>
   <li>Recht auf Löschung (Art. 17 DSGVO)</li>
   <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
   <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
-  <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO)</li>
+  <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO), soweit sie auf berechtigtem
+    Interesse beruht</li>
+  <li>Recht auf Widerruf einer Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
 </ul>
 <p>Da der Lernfortschritt ausschließlich lokal auf dem Gerät gespeichert wird, betreffen diese
 Rechte in der Praxis vor allem die über Firebase erhobenen Absturz-/Nutzungsdaten. Zudem haben Sie
@@ -133,15 +146,17 @@ eingehende Löschanfrage nicht anhand des Datensatzes einer bestimmten Person zu
 <p>Löschung funktioniert daher direkt auf dem Gerät:</p>
 <ol>
   <li>Ixilotl öffnen</li>
-  <li><strong>Einstellungen</strong> öffnen</li>
-  <li>Schalter <strong>„Nutzungs- und Fehlerdaten senden“</strong> deaktivieren</li>
+  <li><strong>Einstellungen</strong> (Zahnrad) → <strong>Spiel</strong> öffnen</li>
+  <li>Unter <strong>„Datenschutz (für Eltern)“</strong> die Schalter <strong>Nutzungsstatistik</strong>
+    und <strong>Absturzberichte</strong> ausschalten</li>
 </ol>
 <p>Damit wird die Übermittlung sofort gestoppt und die Geräte-Kennung der App bei Firebase Analytics
 zurückgesetzt — die Verbindung zwischen Ihrem Gerät und allen bisher gesammelten pseudonymen Daten
 wird dadurch gekappt. Der lokale Lernfortschritt bleibt davon unberührt (er wird ausschließlich auf
 dem Gerät gespeichert und nie an uns übermittelt); er lässt sich bei Bedarf separat über
 Deinstallation der App entfernen.</p>
-<p>Für Crashlytics-Absturzberichte gibt es keine entsprechende Selbst-Reset-Funktion im Gerät; diese
+<p>Noch nicht gesendete Absturzberichte werden ohne Einwilligung auf dem Gerät gelöscht. Für bereits
+gesendete Crashlytics-Absturzberichte gibt es keine Selbst-Reset-Funktion im Gerät; diese
 werden nach 90 Tagen automatisch gelöscht (siehe „Speicherdauer“ oben).
 Bei darüberhinausgehenden Anliegen — etwa wenn Sie zusätzliche Informationen zur Identifizierung
 Ihres Datensatzes mitteilen können oder allgemeine Fragen zur Löschung haben — erreichen Sie uns
@@ -152,8 +167,9 @@ Anfragen innerhalb von <strong>30 Tagen</strong>.</p>
 <p>Ixilotl richtet sich an Kinder im Grundschulalter. Die App erhebt keine personenbezogenen Daten,
 die eine Identifizierung von Kindern ermöglichen. Es gibt keine Chat-Funktion, keine sozialen
 Netzwerke und keine Werbung. Der im Spiel eingegebene Name und der Lernfortschritt bleiben
-ausschließlich auf dem Gerät. Eltern können die oben beschriebene Nutzungsdaten-Erhebung jederzeit
-in den Einstellungen der App deaktivieren.</p>
+ausschließlich auf dem Gerät. Nutzungs- und Absturzdaten werden nur übermittelt, wenn ein Elternteil
+eingewilligt hat (siehe „Einwilligung durch die Eltern“); die Einwilligung lässt sich jederzeit in
+den Einstellungen widerrufen.</p>
 
 <h2>In-App-Käufe</h2>
 <p>Derzeit bietet die App keine Käufe an. Geplant ist eine Vollversion als einmaliger Kauf über den
