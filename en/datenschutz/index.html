@@ -48,8 +48,10 @@ Email: <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a></p>
 <p>See also our <a href="../impressum/">legal notice</a>.</p>
 
 <h2>What data is stored?</h2>
-<p>Ixilotl stores local game data on the device (learning progress, settings). This data never
-leaves the device and is not shared with third parties.</p>
+<p>Ixilotl stores the game state locally on the device: learning progress (every task with answer
+times and results), settings, and the name entered in the game. <strong>Learning progress and the
+name never leave the device</strong> and are not shared with third parties. Some settings are
+transmitted as usage data (see below).</p>
 <p>The app additionally uses Firebase Crashlytics and Firebase Analytics (see below). There is no
 user account and no chat feature. The app shows <strong>no advertising</strong> – neither
 personalized nor of any other kind.</p>
@@ -59,17 +61,19 @@ personalized nor of any other kind.</p>
 (Google LLC) to detect crashes and understand how the app is used, so we can improve it. This may
 transmit the following information:</p>
 <ul>
-  <li>Device model, operating system version, coarse location region (country/city, derived from
-    IP address, not precise)</li>
+  <li>Device model, operating system version, coarse location region (country or region, derived
+    from IP address, not precise)</li>
   <li>Timing and stack traces of crashes</li>
-  <li>App usage events (e.g. which areas of the app are opened), without real names or contact
-    details</li>
+  <li>App usage events: which areas of the app are opened, and the type and duration of missions
+    played and whether they were finished or cancelled – <strong>without</strong> answers, results,
+    or learning progress, without real names or contact details</li>
+  <li>App version, app language, and whether read-aloud is switched on</li>
 </ul>
 <p>This data is not linked to a user account (there is none) and contains no information that
 allows direct identification of a person. There is <strong>no personalized advertising</strong>
 and the device's advertising ID is not used for this purpose.</p>
 <p>This data collection is active by default but can be turned off at any time in the
-<strong>app's settings</strong> via the "Send anonymous usage & crash data" toggle.<br>
+<strong>app's settings</strong> via the "Send usage & crash data" toggle.<br>
 More information: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
 <h2>Legal basis</h2>
@@ -85,9 +89,14 @@ meaning of Art. 46 GDPR. Details:
 <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
 
 <h2>Retention period</h2>
-<p>Local game data remains on the device until the app is uninstalled or progress is reset. The
-retention period for Crashlytics/Analytics data processed by Google is determined by Google under
-its own Firebase product retention policies; we do not set these periods ourselves.</p>
+<p>Local game data remains on the device until the app is uninstalled or progress is reset.</p>
+<ul>
+  <li><strong>Usage data (Firebase Analytics):</strong> device- and event-level data is deleted
+    after <strong>2 months</strong>. Aggregated statistics that do not relate to an individual
+    device (e.g. "how many users have version X") may be kept longer.</li>
+  <li><strong>Crash reports (Firebase Crashlytics):</strong> Google keeps crash reports and the
+    associated identifiers for <strong>90 days</strong> and deletes them afterwards.</li>
+</ul>
 
 <h2>Your rights</h2>
 <p>You have the following rights regarding your personal data vis-à-vis the data controller:</p>
@@ -116,14 +125,14 @@ by email to a specific person's data (Art. 11 GDPR).</p>
 <ol>
   <li>Open Ixilotl</li>
   <li>Open <strong>Settings</strong></li>
-  <li>Turn off the <strong>"Send anonymous usage & crash data"</strong> toggle</li>
+  <li>Turn off the <strong>"Send usage & crash data"</strong> toggle</li>
 </ol>
 <p>This immediately stops transmission and resets the app's device identifier in Firebase
 Analytics — severing the link between your device and all previously collected pseudonymous data.
 Local learning progress is unaffected (it is stored exclusively on the device and never sent to
 us); it can be removed separately by uninstalling the app.</p>
 <p>There is no equivalent on-device reset for Crashlytics crash reports; these are subject to
-Google's own retention period for Firebase products (see "Retention period" above). For anything
+automatic deletion after 90 days (see "Retention period" above). For anything
 beyond this — for example if you can provide additional information to identify your specific
 data, or for general questions about deletion — contact us at
 <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a>. We handle such requests within
@@ -132,8 +141,9 @@ data, or for general questions about deletion — contact us at
 <h2>Children</h2>
 <p>Ixilotl is aimed at primary-school-age children. The app does not collect personal data that
 would allow identification of a child. There is no chat feature, no social networks, and no
-advertising. Parents can disable the usage-data collection described above at any time in the
-app's settings.</p>
+advertising. The name entered in the game and the learning progress stay on the device only.
+Parents can disable the usage-data collection described above at any time in the app's
+settings.</p>
 
 <h2>In-app purchases</h2>
 <p>The app offers a one-time purchase through the Google Play Store.

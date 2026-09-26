@@ -48,8 +48,10 @@ E-Mail: <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a></p>
 <p>Siehe auch unser <a href="../impressum/">Impressum</a>.</p>
 
 <h2>Welche Daten werden gespeichert?</h2>
-<p>Ixilotl speichert lokale Spieldaten auf dem Gerät (Lernfortschritt, Einstellungen). Diese Daten
-verlassen das Gerät nicht und werden nicht an Dritte übermittelt.</p>
+<p>Ixilotl speichert den Spielstand lokal auf dem Gerät: den Lernfortschritt (alle Aufgaben mit
+Antwortzeiten und Ergebnissen), die Einstellungen und den im Spiel eingegebenen Namen.
+<strong>Lernfortschritt und Name verlassen das Gerät nicht</strong> und werden nicht an Dritte
+übermittelt. Einzelne Einstellungen werden als Nutzungsdaten übermittelt (siehe unten).</p>
 <p>Zusätzlich verwendet die App Firebase Crashlytics und Firebase Analytics (siehe unten). Es gibt
 kein Benutzerkonto und keine Chat-Funktion. Die App zeigt <strong>keine Werbung</strong> – weder
 personalisiert noch auf andere Weise.</p>
@@ -59,18 +61,20 @@ personalisiert noch auf andere Weise.</p>
 (Google LLC), um Abstürze zu erkennen und zu verstehen, wie die App genutzt wird, damit wir sie
 verbessern können. Dabei können folgende Informationen übermittelt werden:</p>
 <ul>
-  <li>Gerätemodell, Betriebssystemversion, grobe Standortregion (Land/Stadt, aus der IP-Adresse
-    abgeleitet, nicht präzise)</li>
+  <li>Gerätemodell, Betriebssystemversion, grobe Standortregion (Land bzw. Region, aus der
+    IP-Adresse abgeleitet, nicht präzise)</li>
   <li>Zeitpunkt und Ablaufverfolgung von Abstürzen</li>
-  <li>App-Nutzungsereignisse (z.&nbsp;B. welche Bereiche der App geöffnet werden), ohne Klarnamen
-    oder Kontaktdaten</li>
+  <li>App-Nutzungsereignisse: welche Bereiche der App geöffnet werden sowie Art und Dauer
+    gespielter Missionen und ob sie beendet oder abgebrochen wurden – <strong>ohne</strong>
+    Antworten, Ergebnisse oder Lernstand, ohne Klarnamen oder Kontaktdaten</li>
+  <li>App-Version, App-Sprache und ob die Vorlesefunktion eingeschaltet ist</li>
 </ul>
 <p>Diese Daten sind nicht mit einem Benutzerkonto verknüpft (es gibt keines) und enthalten keine
 Informationen, die eine direkte Identifizierung von Personen ermöglichen. Es findet <strong>keine
 personalisierte Werbung</strong> statt und die Werbe-ID des Geräts wird nicht zu diesem Zweck
 verwendet.</p>
 <p>Diese Datenerhebung ist standardmäßig aktiv, kann aber jederzeit in den
-<strong>Einstellungen der App</strong> über den Schalter „Anonyme Nutzungs- und Fehlerdaten senden“
+<strong>Einstellungen der App</strong> über den Schalter „Nutzungs- und Fehlerdaten senden“
 deaktiviert werden.<br>
 Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
@@ -89,9 +93,15 @@ geeignete Garantie im Sinne von Art. 46 DSGVO. Details:
 
 <h2>Speicherdauer</h2>
 <p>Lokale Spieldaten verbleiben auf dem Gerät, bis die App deinstalliert oder der Spielstand
-zurückgesetzt wird. Über die Speicherdauer der bei Google verarbeiteten Crashlytics-/
-Analytics-Daten entscheidet Google im Rahmen der eigenen Aufbewahrungsfristen der
-Firebase-Produkte; wir selbst legen diese Fristen nicht fest.</p>
+zurückgesetzt wird.</p>
+<ul>
+  <li><strong>Nutzungsdaten (Firebase Analytics):</strong> Geräte- und ereignisbezogene Daten
+    werden nach <strong>2 Monaten</strong> gelöscht. Zusammengefasste Statistiken, die sich nicht
+    auf ein einzelnes Gerät beziehen (z.&nbsp;B. „wie viele Nutzer haben Version X“), können
+    länger erhalten bleiben.</li>
+  <li><strong>Absturzberichte (Firebase Crashlytics):</strong> Google bewahrt Absturzberichte und
+    die zugehörigen Kennungen <strong>90 Tage</strong> auf und löscht sie danach.</li>
+</ul>
 
 <h2>Ihre Rechte</h2>
 <p>Ihnen stehen gegenüber dem Verantwortlichen folgende Rechte bezüglich der Sie betreffenden
@@ -121,7 +131,7 @@ eingehende Löschanfrage nicht anhand des Datensatzes einer bestimmten Person zu
 <ol>
   <li>Ixilotl öffnen</li>
   <li><strong>Einstellungen</strong> öffnen</li>
-  <li>Schalter <strong>„Anonyme Nutzungs- und Fehlerdaten senden“</strong> deaktivieren</li>
+  <li>Schalter <strong>„Nutzungs- und Fehlerdaten senden“</strong> deaktivieren</li>
 </ol>
 <p>Damit wird die Übermittlung sofort gestoppt und die Geräte-Kennung der App bei Firebase Analytics
 zurückgesetzt — die Verbindung zwischen Ihrem Gerät und allen bisher gesammelten pseudonymen Daten
@@ -129,7 +139,7 @@ wird dadurch gekappt. Der lokale Lernfortschritt bleibt davon unberührt (er wir
 dem Gerät gespeichert und nie an uns übermittelt); er lässt sich bei Bedarf separat über
 Deinstallation der App entfernen.</p>
 <p>Für Crashlytics-Absturzberichte gibt es keine entsprechende Selbst-Reset-Funktion im Gerät; diese
-unterliegen Googles eigener Aufbewahrungsfrist für Firebase-Produkte (siehe „Speicherdauer“ oben).
+werden nach 90 Tagen automatisch gelöscht (siehe „Speicherdauer“ oben).
 Bei darüberhinausgehenden Anliegen — etwa wenn Sie zusätzliche Informationen zur Identifizierung
 Ihres Datensatzes mitteilen können oder allgemeine Fragen zur Löschung haben — erreichen Sie uns
 unter <a href="mailto:ixilotl.app@gmail.com">ixilotl.app@gmail.com</a>. Wir bearbeiten solche
@@ -138,7 +148,8 @@ Anfragen innerhalb von <strong>30 Tagen</strong>.</p>
 <h2>Kinder</h2>
 <p>Ixilotl richtet sich an Kinder im Grundschulalter. Die App erhebt keine personenbezogenen Daten,
 die eine Identifizierung von Kindern ermöglichen. Es gibt keine Chat-Funktion, keine sozialen
-Netzwerke und keine Werbung. Eltern können die oben beschriebene Nutzungsdaten-Erhebung jederzeit
+Netzwerke und keine Werbung. Der im Spiel eingegebene Name und der Lernfortschritt bleiben
+ausschließlich auf dem Gerät. Eltern können die oben beschriebene Nutzungsdaten-Erhebung jederzeit
 in den Einstellungen der App deaktivieren.</p>
 
 <h2>In-App-Käufe</h2>
