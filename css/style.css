@@ -316,3 +316,6 @@ footer a{ color:var(--ink-dim); text-decoration:underline; }
   padding:12px 14px; font-size:0.88rem; margin:0 0 12px; color:var(--ink);
 }
 .btn-small{ padding:9px 18px; font-size:0.9rem; background:var(--bg-mid); color:#fff; border:none; cursor:pointer; font-family:inherit; }
+
+/* Preishinweis unter den Preiskarten (PAngV) */
+.price-note{ text-align:center; font-size:0.85rem; opacity:0.75; margin-top:14px; }
