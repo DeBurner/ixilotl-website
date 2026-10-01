@@ -83,11 +83,21 @@
         <input type="text" id="name" name="name" autocomplete="name">
       </div>
       <div class="field">
+        <label for="linkmail">Andere E-Mail-Adresse für den Zugangslink <span class="opt">(optional)</span></label>
+        <input type="email" id="linkmail" name="linkmail" autocomplete="off" placeholder="name@beispiel.de">
+        <span class="hint">Nur ausfüllen, wenn wir den Link zur Testversion an eine andere Adresse schicken sollen als an die Play-Store-Adresse – z. B. weil du dieses Postfach nicht regelmäßig liest oder das Gerät deinem Kind gehört. Bleibt das Feld leer, schicken wir den Link an die Play-Store-Adresse.</span>
+      </div>
+      <div class="field">
+        <label for="phone">Telefonnummer für Rückfragen <span class="opt">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+49 …">
+        <span class="hint">Falls bei der Freischaltung etwas hakt, können wir dich kurz anrufen. Ohne Nummer melden wir uns per E-Mail.</span>
+      </div>
+      <div class="field">
         <label for="msg">Nachricht an uns <span class="opt">(optional)</span></label>
         <textarea id="msg" name="msg" placeholder="Wie bist du auf Ixilotl aufmerksam geworden? Gibt es etwas, das wir wissen sollten?"></textarea>
       </div>
       <label class="check"><input type="checkbox" id="android" required> Mein Gerät ist ein Android-Smartphone oder -Tablet.</label>
-      <p class="form-note">Deine Angaben landen ausschließlich in der E-Mail, die du selbst abschickst – die Website speichert nichts. Wir nutzen die Adresse nur, um dich als Tester im Play Store freizuschalten und dich zur Beta zu kontaktieren. Mehr in der <a href="../datenschutz/">Datenschutzerklärung</a>.</p>
+      <p class="form-note">Deine Angaben landen ausschließlich in der E-Mail, die du selbst abschickst – die Website speichert nichts. Wir nutzen deine Angaben (Adressen und ggf. Telefonnummer) nur, um dich als Tester im Play Store freizuschalten und dich zur Beta zu kontaktieren – wir geben sie nicht an Dritte weiter. Mehr in der <a href="../datenschutz/">Datenschutzerklärung</a>.</p>
       <button type="submit" class="btn btn-primary">Anfrage erstellen</button>
     </form>
 
@@ -121,7 +131,9 @@
         'ich möchte gerne an der Closed Beta von Ixilotl teilnehmen.',
         '',
         'Play-Store-E-Mail-Adresse: ' + d.playmail,
+        'Zugangslink bitte an: ' + (d.linkmail || 'Play-Store-Adresse'),
         'Name: ' + (d.name || '–'),
+        'Telefon für Rückfragen: ' + (d.phone || '–'),
         'Gerät: Android',
         '',
         'Nachricht:',
@@ -132,6 +144,7 @@
 
   var form = document.getElementById('beta-form');
   var mail = document.getElementById('playmail');
+  var linkmail = document.getElementById('linkmail');
   var android = document.getElementById('android');
   var fallback = document.getElementById('fallback');
   var fallbackText = document.getElementById('fallback-text');
@@ -140,6 +153,7 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     mail.setCustomValidity('');
+    linkmail.setCustomValidity('');
     android.setCustomValidity('');
     mail.value = mail.value.trim();
     if (!mail.checkValidity() || !mail.value) {
@@ -152,8 +166,16 @@
       android.reportValidity();
       return;
     }
+    linkmail.value = linkmail.value.trim();
+    if (linkmail.value && !linkmail.checkValidity()) {
+      linkmail.setCustomValidity(T.errMail);
+      linkmail.reportValidity();
+      return;
+    }
     var d = {
       playmail: mail.value,
+      linkmail: linkmail.value,
+      phone: document.getElementById('phone').value.trim(),
       name: document.getElementById('name').value.trim(),
       msg: document.getElementById('msg').value.trim()
     };
@@ -166,6 +188,7 @@
   });
 
   mail.addEventListener('input', function () { mail.setCustomValidity(''); });
+  linkmail.addEventListener('input', function () { linkmail.setCustomValidity(''); });
   android.addEventListener('change', function () { android.setCustomValidity(''); });
 
   copyBtn.addEventListener('click', function () {

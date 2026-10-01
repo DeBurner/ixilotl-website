@@ -83,11 +83,21 @@
         <input type="text" id="name" name="name" autocomplete="name">
       </div>
       <div class="field">
+        <label for="linkmail">Different email address for the access link <span class="opt">(optional)</span></label>
+        <input type="email" id="linkmail" name="linkmail" autocomplete="off" placeholder="name@example.com">
+        <span class="hint">Only fill this in if we should send the link to the test version to a different address than your Play Store address – e.g. because you don't check that inbox regularly or the device belongs to your child. If left empty, we send the link to the Play Store address.</span>
+      </div>
+      <div class="field">
+        <label for="phone">Phone number for questions <span class="opt">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+49 …">
+        <span class="hint">If anything goes wrong during activation, we can give you a quick call. Without a number we'll get in touch by email.</span>
+      </div>
+      <div class="field">
         <label for="msg">Message to us <span class="opt">(optional)</span></label>
         <textarea id="msg" name="msg" placeholder="How did you hear about Ixilotl? Anything we should know?"></textarea>
       </div>
       <label class="check"><input type="checkbox" id="android" required> My device is an Android phone or tablet.</label>
-      <p class="form-note">Your details only end up in the email you send yourself – this website doesn't store anything. We use the address solely to add you as a tester in the Play Store and to contact you about the beta. More in the <a href="../datenschutz/">privacy policy</a>.</p>
+      <p class="form-note">Your details only end up in the email you send yourself – this website doesn't store anything. We use your details (addresses and phone number, if provided) solely to add you as a tester in the Play Store and to contact you about the beta – we don't pass them on to third parties. More in the <a href="../datenschutz/">privacy policy</a>.</p>
       <button type="submit" class="btn btn-primary">Create request</button>
     </form>
 
@@ -123,7 +133,9 @@
         "I'd like to join the Ixilotl closed beta.",
         '',
         'Play Store email address: ' + d.playmail,
+        'Please send the access link to: ' + (d.linkmail || 'Play Store address'),
         'Name: ' + (d.name || '–'),
+        'Phone for questions: ' + (d.phone || '–'),
         'Device: Android',
         '',
         'Message:',
@@ -134,6 +146,7 @@
 
   var form = document.getElementById('beta-form');
   var mail = document.getElementById('playmail');
+  var linkmail = document.getElementById('linkmail');
   var android = document.getElementById('android');
   var fallback = document.getElementById('fallback');
   var fallbackText = document.getElementById('fallback-text');
@@ -142,6 +155,7 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     mail.setCustomValidity('');
+    linkmail.setCustomValidity('');
     android.setCustomValidity('');
     mail.value = mail.value.trim();
     if (!mail.checkValidity() || !mail.value) {
@@ -154,8 +168,16 @@
       android.reportValidity();
       return;
     }
+    linkmail.value = linkmail.value.trim();
+    if (linkmail.value && !linkmail.checkValidity()) {
+      linkmail.setCustomValidity(T.errMail);
+      linkmail.reportValidity();
+      return;
+    }
     var d = {
       playmail: mail.value,
+      linkmail: linkmail.value,
+      phone: document.getElementById('phone').value.trim(),
       name: document.getElementById('name').value.trim(),
       msg: document.getElementById('msg').value.trim()
     };
@@ -168,6 +190,7 @@
   });
 
   mail.addEventListener('input', function () { mail.setCustomValidity(''); });
+  linkmail.addEventListener('input', function () { linkmail.setCustomValidity(''); });
   android.addEventListener('change', function () { android.setCustomValidity(''); });
 
   copyBtn.addEventListener('click', function () {
