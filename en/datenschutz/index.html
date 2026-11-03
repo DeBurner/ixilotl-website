@@ -60,18 +60,8 @@ its data from the device.</p>
 <p><em>Note for users of early test versions (before November 2026):</em> If device backup was
 switched on, these versions could store the game state encrypted in the Android backup of your
 Google account and save an “early user” flag (without name or learning data) in Google Block
-Store. The current app deletes this old Block Store entry automatically on its next start. You can
+Store. The current app deletes the Block Store entry automatically on its next start. You can
 delete an older device backup in your Google account settings (Google Drive → Backups).</p>
-<h3 id="early-user">Early-user gift in your Google account (only with consent)</h3>
-<p>Anyone who uses Ixilotl during the test phase will receive the later full version as a gift.
-At first, this gift is only noted on the device. In the app's settings, parents can – after a short
-check for adults – switch on <strong>“Save the gift to your Google account”</strong>. The app then
-stores a single note (“early user”, without name or learning progress) via <strong>Google Block
-Store</strong> in the device's Google account; Google encrypts it end-to-end if the device has a
-screen lock. After reinstalling, or on a new device with the same Google account, the app reads the
-note and restores the gift. We never receive this note. The switch is off by default. The legal
-basis is your consent (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). Switching it off withdraws consent
-and immediately deletes the note from the Google account.</p>
 <p>The app additionally uses Firebase Crashlytics and Firebase Analytics (see below). There is no
 user account and no chat feature. The app shows <strong>no advertising</strong> – neither
 personalized nor of any other kind.</p>
@@ -122,7 +112,7 @@ Clauses (Art. 46 GDPR). Details:
 <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
 
 <h2>Retention period</h2>
-<p>Local game data remains on the device until the app is uninstalled or progress is reset. Exception: the “early user” flag (a thank-you for testers) survives a progress reset and is only deleted when the app is uninstalled. A note saved to the Google account with consent remains there until the switch is turned off (also possible after reinstalling).</p>
+<p>Local game data remains on the device until the app is uninstalled or progress is reset. Exception: the “early user” flag (a thank-you for testers) survives a progress reset and is only deleted when the app is uninstalled.</p>
 <ul>
   <li><strong>Usage data (Firebase Analytics):</strong> device- and event-level data is deleted
     after <strong>2 months</strong>. Aggregated statistics that do not relate to an individual
