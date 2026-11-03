@@ -60,9 +60,20 @@ alle Daten der App vom Gerät gelöscht.</p>
 <p><em>Hinweis für Nutzer früher Testversionen (vor November 2026):</em> Diese Versionen konnten –
 wenn die Gerätesicherung eingeschaltet war – den Spielstand verschlüsselt in der Android-Sicherung
 Ihres Google-Kontos ablegen und einen Merker „Frühnutzer“ (ohne Namen oder Lerndaten) im Google
-Block Store speichern. Den Block-Store-Eintrag löscht die aktuelle App beim nächsten Start
+Block Store speichern. Diesen alten Block-Store-Eintrag löscht die aktuelle App beim nächsten Start
 automatisch. Eine ältere Gerätesicherung können Sie in den Einstellungen Ihres Google-Kontos
 (Google Drive → Sicherungen) löschen.</p>
+<h3 id="fruehnutzer">Frühnutzer-Geschenk im Google-Konto (nur mit Einwilligung)</h3>
+<p>Wer Ixilotl in der Testphase nutzt, bekommt die spätere Vollversion geschenkt. Dieses Geschenk
+ist zunächst nur auf dem Gerät vermerkt. In den Einstellungen der App können die Eltern – nach einer
+kurzen Prüfung für Erwachsene – den Schalter <strong>„Geschenk im Google-Konto sichern“</strong>
+einschalten. Dann speichert die App einen einzigen Vermerk („Frühnutzer“, ohne Namen oder
+Lernstand) über den <strong>Google Block Store</strong> im Google-Konto des Geräts; Google
+verschlüsselt ihn Ende-zu-Ende, wenn das Gerät eine Displaysperre hat. Nach einer Neuinstallation
+oder auf einem neuen Gerät mit demselben Google-Konto liest die App den Vermerk aus und stellt das
+Geschenk wieder her. Wir selbst erhalten diesen Vermerk nicht. Der Schalter ist standardmäßig aus.
+Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).
+Ausschalten widerruft die Einwilligung und löscht den Vermerk sofort aus dem Google-Konto.</p>
 <p>Zusätzlich verwendet die App Firebase Crashlytics und Firebase Analytics (siehe unten). Es gibt
 kein Benutzerkonto und keine Chat-Funktion. Die App zeigt <strong>keine Werbung</strong> – weder
 personalisiert noch auf andere Weise.</p>
@@ -117,7 +128,9 @@ Framework, Art. 45 DSGVO); Google LLC ist unter diesem Rahmen zertifiziert. Erg�
 <h2>Speicherdauer</h2>
 <p>Lokale Spieldaten verbleiben auf dem Gerät, bis die App deinstalliert oder der Spielstand
 zurückgesetzt wird. Ausnahme: Der Merker „Frühnutzer“ (Dankeschön für Tester) bleibt beim
-Zurücksetzen des Spielstands erhalten und wird erst beim Deinstallieren gelöscht.</p>
+Zurücksetzen des Spielstands erhalten und wird erst beim Deinstallieren gelöscht. Ein mit
+Einwilligung im Google-Konto gesicherter Vermerk bleibt dort, bis der Schalter ausgeschaltet wird
+(das ist auch nach einer Neuinstallation möglich).</p>
 <ul>
   <li><strong>Nutzungsdaten (Firebase Analytics):</strong> Geräte- und ereignisbezogene Daten
     werden nach <strong>2 Monaten</strong> gelöscht. Zusammengefasste Statistiken, die sich nicht
