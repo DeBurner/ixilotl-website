@@ -8,7 +8,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--surface);line-height:1.6;overflow-x:hidden}
 h1,h2,h3,.logo{font-family:'Baloo 2','Nunito',sans-serif;line-height:1.15}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
@@ -49,10 +49,21 @@ html[data-phase="live"] .nur-vorab{display:none!important}
 .checks li::before{content:"✓ ";color:var(--sand)}
 .hero-art img{border-radius:22px;box-shadow:0 24px 50px rgba(0,0,0,.35)}
 .wave{display:block;width:100%;height:60px;margin-top:40px}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1}}
+.hero-phones{position:relative;display:flex;justify-content:center}
+.hero-phones .phone{width:250px}
+.hero-ixi{position:absolute;width:150px;left:calc(50% - 230px);bottom:-10px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.3))}
+.hero-art .phone img{box-shadow:none;border-radius:24px}
+.btn[aria-disabled="true"]{cursor:default;opacity:.85}
+.btn[aria-disabled="true"]:hover{transform:none}
+figure{margin:0}
+.two .phones .phone{width:175px}
+.two .phones .cap{max-width:175px}
+.gift.two{grid-template-columns:1.3fr .7fr}
+@media (max-width:860px){.gift.two{grid-template-columns:1fr}.hero-ixi{width:110px;left:calc(50% - 185px)}}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
 
 /* Abschnitte */
-section{padding:64px 0}
+section{padding:64px 0;scroll-margin-top:58px}
 section.alt{background:var(--surface-dim)}
 .kicker{color:var(--coral-dark);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;margin:0 0 6px}
 h2{font-size:clamp(1.7rem,3.6vw,2.4rem);margin:0 0 14px}
