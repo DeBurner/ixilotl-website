@@ -1,142 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Phase: "vorab" until the open test is live on Google Play (9 Nov 2026), then set to "live". -->
+<html lang="en" data-phase="vorab">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ixilotl – Times Tables as an Underwater Adventure</title>
-<meta name="description" content="Ixilotl is a learning app for primary-school children that turns times-table practice into an underwater adventure – with effective game mechanics, no ads, and no manipulation. Currently in closed beta.">
+<title>Ixilotl – Times tables, truly learned</title>
+<meta name="description" content="Ixilotl turns times-table practice into a game children play of their own accord. For ages 6–10. No ads, no subscription, no data collection – progress stays on the device.">
+<meta property="og:title" content="Ixilotl – Times tables, truly learned">
+<meta property="og:description" content="The times-table app children actually want to play. No ads, no subscription, no data collection.">
+<meta property="og:image" content="https://ixilotl.de/images/neu/banner.jpg">
 <link rel="icon" type="image/png" href="../images/ixilotl-icon.png">
 <link rel="apple-touch-icon" href="../images/ixilotl-icon.png">
 <link rel="stylesheet" href="../fonts/fonts.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/start.css">
 </head>
 <body>
 
-<div class="hero">
-  <nav class="nav">
-    <a class="logo" href="./">Ixilotl</a>
-    <div class="nav-links">
-      <div class="lang-switch"><a href="../">DE</a><a class="active" href="./">EN</a></div>
-      <a class="link" href="datenschutz/">Privacy</a>
-      <a class="link" href="impressum/">Legal Notice</a>
-    </div>
-  </nav>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./"><img src="../images/ixilotl-icon.png" alt="">Ixilotl</a>
+    <nav>
+      <a class="hide-sm" href="#motivation">How it motivates</a>
+      <a class="hide-sm" href="#parents">For parents</a>
+      <a class="hide-sm" href="#price">Price</a>
+      <a class="hide-sm" href="#faq">FAQ</a>
+      <span class="lang"><a href="../">DE</a><a class="on" href="./">EN</a></span>
+    </nav>
+  </div>
+</header>
 
-  <div class="hero-inner">
-    <div class="hero-text">
-      <span class="badge">Closed Beta</span>
-      <h1>Times tables become an <span>underwater adventure</span></h1>
-      <p>Ixilotl helps primary-school children truly automatize their times tables – using the mechanics that make good games engaging, without their tricks. Completely ad-free.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="beta/">Request beta access</a>
-        <a class="btn btn-ghost" href="#concept">See how it works</a>
+<!-- 1 Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge nur-vorab">Open test from 9 November</span>
+      <span class="badge nur-live">Now in open test</span>
+      <h1>Times tables.<br><em>Truly learned.</em><br>No arguments.</h1>
+      <p class="lead">Ixilotl turns practice into a game children play of their own accord. No ads, no subscription, no data collection.</p>
+      <div class="ctas">
+        <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
+        <span class="btn btn-store nur-vorab" aria-disabled="true"><span><small>From 9 November</small>on Google Play</span></span>
+        <a class="btn btn-ghost" href="#motivation">How it works</a>
       </div>
+      <ul class="checks">
+        <li>Ages 6–10</li><li>Offline, no account</li><li>No ads</li><li>Android · iPhone planned</li>
+      </ul>
     </div>
-    <div class="hero-art">
-      <img src="../images/ixilotl-banner.jpg" alt="Ixilotl, the axolotl mascot, with times-table tiles and sea enemies in the underwater world" width="600" height="293">
+    <div class="hero-art hero-phones">
+      <div class="phone"><img src="../images/neu/runde.jpg" width="540" height="1171" alt="A practice round: 8 × 5 = 40 is correct, Ixi cheers, points fly in"></div>
+      <img class="hero-ixi" src="../images/neu/ixi.png" width="420" height="420" alt="">
     </div>
   </div>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,24L80,30C160,36,320,48,480,46C640,44,800,28,960,24C1120,20,1280,28,1360,32L1440,36L1440,60L0,60Z"/></svg>
+</section>
 
-  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none">
-    <path fill="#ffffff" d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,42.7C840,32,960,32,1080,37.3C1200,43,1320,53,1380,58.7L1440,64L1440,90L0,90Z"></path>
-  </svg>
-</div>
+<!-- 2 Problem -->
+<section id="problem">
+  <div class="wrap two">
+    <div>
+      <p class="kicker">The problem</p>
+      <h2>Times tables need to be known – not worked out.</h2>
+      <p class="intro">A child who still counts their way to 7 × 8 is slow, makes mistakes and has no head space left for what comes next: division, written arithmetic, fractions. But memorising is boring. So it often doesn't get practised enough – and then there are arguments at the kitchen table.</p>
+      <p class="source">In Germany's IQB Education Trend 2021, around 22 % of fourth-graders missed the minimum standards in mathematics.</p>
+    </div>
+    <div class="compare">
+      <div class="slow"><b>Counting</b><code>7 + 7 + 7 + 7 + 7 + 7 + 7 + 7</code><div class="big">…</div>slow and error-prone</div>
+      <div class="fast"><b>Knowing</b><code>7 × 8</code><div class="big">56</div>recalled instantly</div>
+    </div>
+  </div>
+</section>
 
-<main>
+<!-- 3 Solution -->
+<section class="alt" id="solution">
+  <div class="wrap two">
+    <div class="phones">
+      <div class="phone"><img src="../images/neu/anim_luftblasen.webp" width="393" height="852" loading="lazy" alt="Short animation: correct answer, bubbles rise, Ixi cheers"></div>
+    </div>
+    <div>
+      <p class="kicker">The solution</p>
+      <h2>One thing done right: recalling all 100 facts with confidence.</h2>
+      <p class="intro">That is exactly what Ixilotl trains. It uses what makes games so engaging – but aimed at learning instead of ads and purchases. Every correct answer is a small win, with sparkle, sound and a cheering Ixi.</p>
+      <div class="ctas"><a class="btn btn-coral" href="#price">Try it for free</a></div>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="concept">
-    <h2>One times table, one rival, one new friend</h2>
-    <p class="lead">Every times table lives as a sea creature in Ixilotl's underwater world – from the crab in the 2-times table to the giant squid as the final boss of the 10-times table. Master a table, and its rival becomes an ally.</p>
+<!-- 4 Motivation -->
+<section id="motivation">
+  <div class="wrap">
+    <p class="kicker">The heart of it</p>
+    <h2>How Ixilotl motivates</h2>
+    <p class="intro">Everything in the app serves one goal. The game elements keep your child practising – not spending money.</p>
+
+    <div class="phones" style="margin-bottom:34px">
+      <figure><div class="phone"><img src="../images/neu/tier_grimmig.jpg" width="540" height="1171" loading="lazy" alt="Level screen of the 8 times table: the shark still looks grumpy"></div><figcaption class="cap">Still grumpy: the shark guards the 8 times table …</figcaption></figure>
+      <figure><div class="phone"><img src="../images/neu/tier_freund.jpg" width="540" height="1171" loading="lazy" alt="The same shark now smiles, level 3 reached"></div><figcaption class="cap">… one good round later, it's a friend.</figcaption></figure>
+      <figure><div class="phone"><img src="../images/neu/stufen.jpg" width="540" height="1171" loading="lazy" alt="Pufferfish of the 5 times table at level 6 of 10 with a string of pearls"></div><figcaption class="cap">Pearls and levels: a level once reached is never lost.</figcaption></figure>
+    </div>
+
     <div class="cards">
-      <div class="card">
-        <span class="icon">🌊</span>
-        <h3>Adaptive learning</h3>
-        <p>Ixilotl continuously tracks where a child struggles and blends familiar tasks with new ones – so every session ends on a sense of success, not frustration.</p>
+      <div class="card"><div class="ico">🦎</div><h3>Ixi as a companion</h3><p>The axolotl talks to your child, celebrates with them and gives tips – but only after a round, never in the middle.</p></div>
+      <div class="card"><div class="ico">🐠</div><h3>A sea creature for every table</h3><p>From the clownfish to the deep-sea kraken. The grumpy creature becomes a friend: a clear goal for every table.</p></div>
+      <div class="card"><div class="ico">📿</div><h3>Pearls instead of tests</h3><p>Every good round earns pearls. Practice goes on beyond "I can do it" – until it is effortless.</p></div>
+      <div class="card"><div class="ico">💎</div><h3>Diamonds for improvement</h3><p>Rewards go to getting faster and more confident. Repeating easy questions over and over doesn't pay off.</p></div>
+      <div class="card"><div class="ico">🟩</div><h3>The colour map</h3><p>All 100 facts as tiles that glow brighter with every bit of progress. Gaps are visible at a glance.</p></div>
+      <div class="card"><div class="ico">📅</div><h3>Daily goals without pressure</h3><p>Small tasks for today spread practice over many days. A missed day is never punished.</p></div>
+      <div class="card"><div class="ico">🎨</div><h3>A world of their own</h3><p>Colour worlds, Ixi colours and sounds, earned by practising. Looks only – never for sale for real money.</p></div>
+      <div class="card"><div class="ico">🤗</div><h3>Mistakes without penalty</h3><p>No point deductions, no lives, kind words. Practice without fear, especially for kids who struggle with maths.</p></div>
+    </div>
+
+    <figure style="margin:40px 0 0">
+      <img src="../images/neu/ixi_outfits.webp" width="1400" height="790" loading="lazy" alt="Six Ixis in different colours, some wearing diving goggles or a pirate hat" style="border-radius:20px;margin:0 auto">
+      <figcaption class="cap" style="max-width:none">Ixi the way your child likes him: colours, diving goggles, pirate hat – all earned, nothing bought.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 5 Understand, then automate -->
+<section class="alt" id="understand">
+  <div class="wrap">
+    <p class="kicker">Learning path</p>
+    <h2>First understand, then automate</h2>
+    <p class="intro">Before it gets fast, it has to be clear what 3 × 4 actually means. That's why every table has two groups of missions.</p>
+    <div class="two">
+      <div class="steps" style="grid-template-columns:1fr">
+        <div class="grp">
+          <h3>Learn</h3>
+          <div class="pills"><span class="pill p1">Discover</span><span class="pill p2">Choice</span><span class="pill p3">Spot the error</span><span class="pill p4">Memory</span></div>
+          <p>In Discover, packets of beads drop into a hundred square. It makes visible what multiplying means – with no time pressure at all.</p>
+        </div>
+        <div class="grp">
+          <h3>Practise</h3>
+          <div class="pills"><span class="pill p5">Forwards</span><span class="pill p2">Mixed</span><span class="pill p3">Backwards</span></div>
+          <p>Recall instead of reciting. Backwards ("? × 5 = 35") counts the most – and prepares for division.</p>
+        </div>
       </div>
-      <div class="card">
-        <span class="icon">⚡</span>
-        <h3>True automaticity</h3>
-        <p>The goal isn't solving a problem once, it's knowing the answer instantly. Repetition with purpose, not rote drilling.</p>
-      </div>
-      <div class="card">
-        <span class="icon">💎</span>
-        <h3>Rewards for sticking with it</h3>
-        <p>Diamonds are earned for genuine progress – a new best time, a task solved for the first time – as well as for regular practice. They unlock cosmetic customization for the app's look and sound, like effects, color themes, or audio sets. Kids love making their Ixilotl world their own.</p>
+      <div class="phones">
+        <figure><div class="phone"><img src="../images/neu/entdecken.jpg" width="540" height="1171" loading="lazy" alt="Discover: three packets of three beads each in the hundred square"></div><figcaption class="cap">Discover: 3 packets of 3 beads</figcaption></figure>
+        <figure><div class="phone"><img src="../images/neu/rueckwaerts.jpg" width="540" height="1171" loading="lazy" alt="Backwards question: question mark times 5 equals 35"></div><figcaption class="cap">Backwards: which number is missing?</figcaption></figure>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="screenshots">
-    <h2>A look inside the app</h2>
-    <p class="lead">Screenshots from the ongoing closed beta.</p>
-    <div class="shots">
-      <div class="shot">
-        <img src="../images/screenshot-missions.jpg" alt="Mission overview for one times table's learning path" loading="lazy">
-        <p>Every times table has its own learning path – from first practice to the final test.</p>
-      </div>
-      <div class="shot">
-        <img src="../images/screenshot-gameplay.jpg" alt="An active practice round with a success animation" loading="lazy">
-        <p>Short rounds with an immediate, tangible sense of success.</p>
-      </div>
-      <div class="shot">
-        <img src="../images/screenshot-progress.jpg" alt="Progress matrix covering every times-table fact" loading="lazy">
-        <p>The progress matrix shows at a glance which facts are already solid.</p>
-      </div>
-      <div class="shot">
-        <img src="../images/screenshot-shop.jpg" alt="Shop with cosmetic rewards" loading="lazy">
-        <p>Cosmetic rewards for looks and sound, earned through progress and regular practice.</p>
-      </div>
-      <div class="shot">
-        <img src="../images/screenshot-dialogue.jpg" alt="Ixilotl guiding the player with a dialogue prompt" loading="lazy">
-        <p>Ixilotl accompanies the player as a character throughout the whole app – offering feedback, recommendations, and encouragement in dialogue.</p>
-      </div>
+<!-- 6 Parents -->
+<section id="parents">
+  <div class="wrap two">
+    <div>
+      <p class="kicker">For parents</p>
+      <h2>You see what your child sees.</h2>
+      <p class="intro">The colour map and Ixi's "What can I do already?" show learning progress – to you and your child alike.</p>
+      <p><b>No secrets:</b> there is no hidden parent report. Your child may see everything you see – which helps them reflect on their own learning.</p>
+      <p>The protected parent area is only for grown-up things: privacy settings, sending emails (feedback, securing the gift) and, later, buying the full version.</p>
     </div>
-  </section>
-
-  <section class="section" id="mechanics">
-    <h2>Effective game mechanics, used responsibly</h2>
-    <p class="lead">Ixilotl borrows the mechanics that make good games engaging to keep kids coming back to learning – without relying on manipulation to do it.</p>
-    <div class="cards">
-      <div class="card">
-        <span class="icon">📅</span>
-        <h3>Daily tasks</h3>
-        <p>Short daily and weekly tasks set achievable goals and reward regular practice – with no guilt-tripping or threats over a missed day.</p>
-      </div>
-      <div class="card">
-        <span class="icon">🎯</span>
-        <h3>Targeted practice missions</h3>
-        <p>The app automatically detects which facts are still shaky and suggests focused missions for exactly those – instead of repeating everything at random.</p>
-      </div>
-      <div class="card">
-        <span class="icon">🦎</span>
-        <h3>A character that grows with you</h3>
-        <p>Ixilotl itself grows alongside the child's progress and visibly reacts to streaks and breaks – a bond that motivates without adding pressure.</p>
-      </div>
+    <div class="phones">
+      <figure><div class="phone"><img src="../images/neu/farbkarte.jpg" width="540" height="1171" loading="lazy" alt="Colour map of all times-table facts: many bright and green tiles, a few dark ones such as 7 × 8"></div><figcaption class="cap">Dark tiles show where it still sticks.</figcaption></figure>
+      <figure><div class="phone"><img src="../images/neu/ixi_lob.jpg" width="540" height="1171" loading="lazy" alt="Ixi praises the child for coming back on 6 days and suggests practising 7 × 8"></div><figcaption class="cap">Specific praise and a next step. (App shown in German; 10 languages available.)</figcaption></figure>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="pricing">
-    <h2>Try it free now</h2>
-    <p class="lead">Ixilotl is in its test phase and free until then – no ads and no in-app purchases.</p>
-    <p class="price-note">Later there will be a full version as a one-time purchase via the Google Play Store, no subscription. We will announce price and scope well before launch.</p>
-  </section>
-
-  <section class="parents">
-    <h2>For parents</h2>
-    <p class="lead">Ixilotl is designed to stand apart from manipulative game apps – using their effective mechanics without their tricks.</p>
-    <ul class="trust-list">
-      <li><strong>No advertising</strong>Neither personalized nor any other kind of advertising – in any version of the app.</li>
-      <li><strong>No purchase pressure</strong>No artificial countdown offers or guilt-based prompts.</li>
-      <li><strong>Data-minimal</strong>Learning progress stays on the device. Pseudonymous crash/usage data (no names, no learning results) only with parental consent – revocable at any time – <a href="datenschutz/">details in the privacy policy</a>.</li>
-      <li><strong>No chat, no strangers</strong>No social features, no way to contact other users.</li>
+<!-- 7 What you won't find -->
+<section class="alt" id="not">
+  <div class="wrap">
+    <p class="kicker">Trust</p>
+    <h2>What you won't find in Ixilotl</h2>
+    <ul class="nots">
+      <li>No ads<small>in any version</small></li>
+      <li>No subscription<small>a one-time purchase instead of monthly payments</small></li>
+      <li>No data collection<small>Progress stays on the device. Statistics only if parents switch them on (off by default). <a href="datenschutz/">Details</a></small></li>
+      <li>No in-game purchases<small>diamonds are earned only by practising</small></li>
+      <li>No loot boxes, no wheels of fortune<small>no chance-based rewards</small></li>
+      <li>No leaderboards<small>every child competes only with themselves</small></li>
+      <li>No chat<small>no contact with strangers</small></li>
+      <li>No account<small>works offline, no sign-up</small></li>
     </ul>
-  </section>
+  </div>
+</section>
 
-</main>
+<!-- 8 Price + promise -->
+<section id="price">
+  <div class="wrap">
+    <div class="promise">
+      <div>
+        <p class="kicker" style="color:var(--sand)">Price</p>
+        <h2>Free now – and a gift for early starters.</h2>
+        <p>Ixilotl is free during the open test. Anyone who installs and launches the app by <b>30 November 2026</b> (inclusive) gets the full version as a thank-you gift as soon as it exists. The gift applies as long as Ixilotl stays installed on the device. <a href="../tester-dankeschoen/" style="color:#fff">Terms (German)</a></p>
+        <p>From the sales launch (planned for early December 2026), Ixilotl can first be tried for free; after that, the full version is a one-time purchase. No subscription.</p>
+        <p style="font-size:1.08rem;color:#fff;margin-top:18px"><b>Our promise:</b> Ixilotl is a one-time purchase. There is no subscription and there are no paid add-ons. Everything we release for Ixilotl in the future – including new content such as further times tables – comes at no extra cost to owners of the full version.</p>
+        <p style="font-size:.88rem">Which content arrives when is planned, not guaranteed. The promise is about cost: whatever comes costs nothing extra.</p>
+        <p class="sig">– Sebastian Buhl</p>
+        <div class="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
+          <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
+          <span class="btn btn-ghost nur-vorab">On Google Play from 9 November</span>
+        </div>
+      </div>
+      <img src="../images/neu/ixi.png" width="420" height="420" loading="lazy" alt="Ixi smiles">
+    </div>
+
+    <!-- 8a Secure the gift -->
+    <div class="gift two" id="gift">
+      <div>
+        <h3>🎁 Secure the gift for good</h3>
+        <ol>
+          <li>In the app: Settings → 🎁 → "Secure the gift for good".</li>
+          <li>Fill in the feedback form, ideally together with your child. Honest criticism helps most.</li>
+          <li>Send it as an adult (adult check, then your email app).</li>
+        </ol>
+        <p>At the sales launch, a Google Play code is sent to your sender address. Once redeemed in the Play Store, it applies to your Google account – even after reinstalling or on a new phone.</p>
+        <p class="why"><b>Why by email?</b> Ixilotl has no account and knows neither names nor email addresses. So we don't know who uses the app and couldn't send you a code otherwise. We use your email address for this only: no newsletter, no ads, no sharing. <a href="../tester-dankeschoen/">Terms (German)</a></p>
+      </div>
+      <div class="phones"><div class="phone"><img src="../images/neu/geschenk.jpg" width="540" height="1171" loading="lazy" alt="Settings with the gift tile and the button to secure the gift"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8b Outlook -->
+<section class="alt" id="outlook">
+  <div class="wrap">
+    <p class="kicker">Outlook</p>
+    <h2>Ixi is getting even better</h2>
+    <div class="next">
+      <div class="card"><h3>In progress: a new underwater world</h3><p>Ixi swims through the world to the times-table creatures. Same learning principle, more movement, more adventure.</p></div>
+      <div class="card"><h3>Planned: the deep sea</h3><p>With times tables 11 to 20 as part of the full version. Install by 30 November and you get the full version as a gift – <a href="#gift">here's how to secure it</a>.</p></div>
+    </div>
+    <div class="phones" style="margin-top:30px">
+      <div class="phone"><img src="../images/neu/welt_polarmeer.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Polar Sea colour world"></div>
+      <div class="phone"><img src="../images/neu/welt_vulkan.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Deep-Sea Volcano colour world"></div>
+      <div class="phone"><img src="../images/neu/welt_schatzwrack.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Treasure Wreck colour world"></div>
+      <div class="phone"><img src="../images/neu/welt_seetangwald.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Kelp Forest colour world"></div>
+    </div>
+    <p class="cap" style="max-width:none">Already here: colour worlds children earn in the shop.</p>
+  </div>
+</section>
+
+<!-- 9 Teachers -->
+<section id="teachers">
+  <div class="wrap two">
+    <div>
+      <p class="kicker">For teachers</p>
+      <h2>Privacy-friendly in class and at home</h2>
+      <p class="intro">Offline and without an account; learning results never leave the device. Every child practises at their own level, without being shown up in front of the class. A school version is planned.</p>
+      <a class="btn btn-coral" href="mailto:support@ixilotl.de?subject=Ixilotl%20for%20schools">Get in touch</a>
+    </div>
+    <div class="phones"><div class="phone"><img src="../images/neu/aufgaben.jpg" width="540" height="1171" loading="lazy" alt="Goals overview with targets such as 150 missions completed and a 7-day streak"></div></div>
+  </div>
+</section>
+
+<!-- 10 About -->
+<section class="alt" id="about">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Who's behind it</p>
+      <h2>Sebastian Buhl, Wiesbaden (Germany)</h2>
+      <p>Teacher, tutor, father, computer scientist.</p>
+      <blockquote style="margin:0;font-size:1.12rem;font-style:italic;border-left:4px solid var(--coral);padding-left:16px">"I know the problem from the classroom, from tutoring and from the kitchen table. And I know the learning apps that don't solve it."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 11 FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <details><summary>What age is it for?</summary><p>For children aged about 6 to 10. Also for brushing up at 11+.</p></details>
+    <details><summary>How long should my child practise each day?</summary><p>5 to 15 minutes is enough. A little regularly works better than a lot occasionally.</p></details>
+    <details><summary>Is Ixilotl available for iPhone and iPad?</summary><p>Not yet. A version for Apple devices is planned.</p></details>
+    <details><summary>Can several children play on one device?</summary><p>Not yet. Separate profiles for siblings are planned.</p></details>
+    <details><summary>Which languages does the app support?</summary><p>Ixilotl is available in 10 languages, including English and German.</p></details>
+    <details><summary>Does the app need the internet?</summary><p>No. Ixilotl works completely offline and without an account.</p></details>
+    <details><summary>What happens to my child's data?</summary><p>Progress stays on the device. Pseudonymous usage and crash statistics (no names, no learning results) exist only if you switch them on in the protected parent area – they are off by default. Learning results are never transmitted. More in the <a href="datenschutz/">privacy policy</a>.</p></details>
+  </div>
+</section>
+
+<!-- 12 Final -->
+<section class="final">
+  <div class="wrap">
+    <img src="../images/neu/ixi.png" width="420" height="420" loading="lazy" alt="Ixi smiles">
+    <h2>Ready for times tables without arguments?</h2>
+    <p>Try it for free – install by 30 November 2026 and get the full version as a gift.</p>
+    <div class="ctas">
+      <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
+      <span class="btn btn-ghost nur-vorab">On Google Play from 9 November</span>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <span>Ixilotl · Sumpfsoftware Studio · Sebastian Buhl</span>
-  <span><a href="mailto:support@ixilotl.de">support@ixilotl.de</a> · <a href="../tester-dankeschoen/">Tester thank-you (DE)</a> · <a href="datenschutz/">Privacy</a> · <a href="impressum/">Legal Notice</a></span>
+  <div class="wrap">
+    <span>Ixilotl · Sumpfsoftware Studio · Sebastian Buhl</span>
+    <span><a href="mailto:support@ixilotl.de">support@ixilotl.de</a> · <a href="../tester-dankeschoen/">Tester thank-you (German)</a> · <a href="datenschutz/">Privacy</a> · <a href="impressum/">Legal notice</a></span>
+  </div>
 </footer>
 
 </body>
