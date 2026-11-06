@@ -50,76 +50,58 @@ Email: <a href="mailto:support@ixilotl.de">support@ixilotl.de</a></p>
 <p>See also our <a href="../impressum/">legal notice</a>.</p>
 
 <h2>What data is stored?</h2>
-<p>Ixilotl stores the game state locally on the device: learning progress (every task with answer
-times and results), settings, and the name entered in the game. <strong>Learning progress and the
-name never leave the device</strong> and are not shared with third parties. Some settings are
-transmitted as usage data – only with consent (see below).</p>
-<p><strong>No cloud backup:</strong> The app is excluded from Android device backup. The game
-state is therefore not backed up to your Google account, and uninstalling the app deletes all of
-its data from the device.</p>
-<p><em>Note for users of early test versions (before November 2026):</em> If device backup was
-switched on, these versions could store the game state encrypted in the Android backup of your
-Google account and save an “early user” flag (without name or learning data) in Google Block
-Store. The current app deletes the Block Store entry automatically on its next start. You can
-delete an older device backup in your Google account settings (Google Drive → Backups).</p>
-<p>The app additionally uses Firebase Crashlytics and Firebase Analytics (see below). There is no
-user account and no chat feature. The app shows <strong>no advertising</strong> – neither
-personalized nor of any other kind.</p>
-
-<h2>Crash and usage data (Firebase Crashlytics &amp; Analytics)</h2>
-<p>The app uses <strong>Firebase Crashlytics</strong> and <strong>Firebase Analytics</strong>
-(Google LLC) to detect crashes and understand how the app is used, so we can improve it. This may
-transmit the following information:</p>
+<p><strong>The app does not send any data on its own</strong> – neither to us nor to third parties
+(since version 0.7.3; for older versions see <a href="#older-versions">“Note on older
+versions”</a>). There is no user account, no chat function and <strong>no advertising</strong>.
+The app contains no analytics, tracking or crash-reporting services.</p>
+<p>Ixilotl stores locally on the device:</p>
 <ul>
-  <li>Device model, operating system version, coarse location region (country or region, derived
-    from IP address, not precise)</li>
-  <li>Timing and stack traces of crashes</li>
-  <li>App usage events: which areas of the app are opened, and the type and duration of missions
-    played and whether they were finished or cancelled – <strong>without</strong> answers, results,
-    or learning progress, without real names or contact details</li>
-  <li>App version, app language, and whether read-aloud is switched on</li>
+  <li>the game progress including learning progress (all tasks with response times and results),
+    the settings and the name entered in the game,</li>
+  <li>the “early user” flag (thank-you for everyone who installs the app by 30 November 2026),</li>
+  <li>a partly completed feedback form (see <a href="#feedback">“Feedback from the app”</a>),</li>
+  <li>an <strong>error log</strong> (see below).</li>
 </ul>
-<p>This data is not linked to a user account (there is none) and contains no information that
-allows direct identification of a person. There is <strong>no personalized advertising</strong>
-and the device's advertising ID is not used for this purpose.</p>
-<p>This data is only collected <strong>if a parent has given consent beforehand</strong>, separately
-for each of the two services (see "Consent by parents"). Without consent, Firebase is not started in
-the app at all.<br>
-More information: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+<p><strong>Learning progress and name never leave the device.</strong> We only receive data if you
+write to us yourself, for example via the app's feedback form – in that case also your email
+address (see <a href="#feedback">“Feedback from the app”</a>).</p>
+<p id="error-log"><strong>Error log (on the device only):</strong> if a technical error occurs in the
+app, it keeps a local note of the last 20 errors at most: time, app version, the technical error
+message and the affected program locations – no names, no learning progress. The log is not
+transmitted. You can view and delete it in the feedback form; it is only sent along if you explicitly
+tick “Attach error log” there (see <a href="#feedback">“Feedback from the app”</a>).</p>
+<p><strong>No cloud backup:</strong> the app is excluded from Android device backup. The game
+progress is therefore not backed up via your Google account either, and uninstalling the app deletes
+all of its data from the device.</p>
 
-<h2 id="consent">Consent by parents and legal basis</h2>
-<p>On first launch (or once after the update) the app asks in the <strong>"For parents"</strong>
-area whether the two data shares are allowed. The child is asked to hand the device to a parent;
-before the question there is a quick check for adults (entering the date of birth, which is not
-stored). Parents can allow <strong>usage statistics</strong> (Firebase Analytics) and <strong>crash
-reports</strong> (Firebase Crashlytics) separately; both are off by default. "Allow none" or
-"Later" keeps everything off – the app then works without any restriction.</p>
-<p>The legal basis is your <strong>consent</strong> (Art. 6(1)(a) GDPR and § 25(1) of the German
-TDDDG for access to the device). As the app is aimed at children, consent is given by a parent
-(Art. 8 GDPR). The decision, its time and the version of the consent text are stored locally on the
-device only.</p>
-<p><strong>Withdrawal:</strong> you can withdraw your consent at any time with effect for the future
-under <strong>Settings (gear icon) → Game → "Privacy (for parents)"</strong>. Turning off requires no
-check; transmission stops immediately. The lawfulness of processing before the withdrawal remains
-unaffected (Art. 7(3) GDPR).</p>
-
-<h2>International data transfers</h2>
-<p>Firebase Crashlytics and Firebase Analytics are provided by Google LLC and/or Google Ireland
-Limited. Data may be transferred to the USA or other third countries as part of this. For the USA, an
-adequacy decision of the EU Commission exists (EU-US Data Privacy Framework, Art. 45 GDPR); Google
-LLC is certified under this framework. In addition, Google relies on the EU Standard Contractual
-Clauses (Art. 46 GDPR). Details:
-<a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
+<h2 id="older-versions">Note on older versions (up to 0.7.2)</h2>
+<p>Up to and including version 0.7.2 (test phase until November 2026), the following also applied:</p>
+<ul>
+  <li><strong>Firebase Analytics and Firebase Crashlytics</strong> (Google): usage statistics and
+    crash reports – but only if a parent had explicitly consented in the app, separately for each
+    service and switched off by default (Art. 6(1)(a), Art. 8 GDPR, § 25(1) TDDDG). Pseudonymous
+    information was transmitted: device model, operating system version, approximate location region
+    (derived from the IP address), app version and language, which areas of the app were opened and
+    which missions were played (without answers, results or learning progress), and crash reports.
+    Google could also transfer data to the USA (EU-US Data Privacy Framework, Art. 45 GDPR;
+    additionally standard contractual clauses). Google deletes usage data after
+    <strong>2 months</strong> and crash reports after <strong>90 days</strong>.</li>
+  <li>Depending on the version, the game progress could be stored encrypted in the Android backup of
+    your Google account (if device backup was switched on), and an “early user” flag (without name or
+    learning data) in Google Block Store.</li>
+</ul>
+<p>With the update to version 0.7.3, all transmission stops. The stored consent is deleted on the
+device, and the app removes the Block Store entry the next time it starts. You can delete an older
+device backup in your Google account (Google Drive → Backups). Firebase data already transmitted is
+linked to a random device identifier, not to you personally; it is deleted automatically after the
+periods stated above.</p>
 
 <h2>Retention period</h2>
-<p>Local game data remains on the device until the app is uninstalled or progress is reset. Exception: the “early user” flag (a thank-you for testers) survives a progress reset and is only deleted when the app is uninstalled.</p>
-<ul>
-  <li><strong>Usage data (Firebase Analytics):</strong> device- and event-level data is deleted
-    after <strong>2 months</strong>. Aggregated statistics that do not relate to an individual
-    device (e.g. "how many users have version X") may be kept longer.</li>
-  <li><strong>Crash reports (Firebase Crashlytics):</strong> Google keeps crash reports and the
-    associated identifiers for <strong>90 days</strong> and deletes them afterwards.</li>
-</ul>
+<p>Local data remains on the device until the app is uninstalled or the game progress is reset.
+Exception: the “early user” flag is kept when the game progress is reset and is only deleted when the
+app is uninstalled. The error log holds the last 20 errors at most; older entries are overwritten
+automatically, and you can delete it at any time in the feedback form. For the retention of emails,
+see the sections on email and feedback below.</p>
 
 <h2>Your rights</h2>
 <p>You have the following rights regarding your personal data vis-à-vis the data controller:</p>
@@ -133,43 +115,38 @@ Clauses (Art. 46 GDPR). Details:
   <li>Right to withdraw consent (Art. 7(3) GDPR)</li>
 </ul>
 <p>Since learning progress is stored exclusively locally on the device, these rights in practice
-mainly concern the crash/usage data collected via Firebase. You also have the right to lodge a
+mainly concern emails you have sent us (for example via the feedback form) and the email address they
+contain. You also have the right to lodge a
 complaint with a data protection supervisory authority (Art. 77 GDPR) — typically the authority in
 your country or state of residence. For Hesse (Germany), this is the
 <a href="https://datenschutz.hessen.de/" target="_blank">Hessischer Beauftragter für Datenschutz und
 Informationsfreiheit</a>.</p>
 
 <h2 id="deletion">Requesting data deletion</h2>
-<p>Ixilotl has <strong>no user account</strong> and does not collect names, email addresses, or
-any other identifiers that would identify a person. The only data transmitted to Google (crash and
-usage data via Firebase Crashlytics/Analytics, see above) is linked to a random, pseudonymous
-device identifier — not to you personally. This means we cannot match a deletion request received
-by email to a specific person's data (Art. 11 GDPR).</p>
-<p>Deletion therefore works directly on the device:</p>
-<ol>
-  <li>Open Ixilotl</li>
-  <li>Open <strong>Settings</strong> (gear icon) → <strong>Game</strong></li>
-  <li>Under <strong>"Privacy (for parents)"</strong>, turn off <strong>Usage statistics</strong> and
-    <strong>Crash reports</strong></li>
-</ol>
-<p>This immediately stops transmission and resets the app's device identifier in Firebase
-Analytics — severing the link between your device and all previously collected pseudonymous data.
-Local learning progress is unaffected (it is stored exclusively on the device and never sent to
-us); it can be removed separately by uninstalling the app.</p>
-<p>Crash reports not yet sent are deleted on the device without consent. There is no on-device
-reset for crash reports already sent; these are subject to
-automatic deletion after 90 days (see "Retention period" above). For anything
-beyond this — for example if you can provide additional information to identify your specific
-data, or for general questions about deletion — contact us at
-<a href="mailto:support@ixilotl.de">support@ixilotl.de</a>. We handle such requests within
+<p>Ixilotl has <strong>no user account</strong> and does not send any data. Everything the app
+stores is kept only on your device. This is how to delete it:</p>
+<ul>
+  <li><strong>All app data:</strong> uninstall Ixilotl (or clear its data in the Android settings
+    under Apps → Ixilotl → Storage).</li>
+  <li><strong>Game progress only:</strong> Settings (gear icon) → “Delete all progress”.</li>
+  <li><strong>Error log only:</strong> open the feedback form → “Show” next to the error log →
+    “Delete log”.</li>
+</ul>
+<p><strong>Emails to us</strong> (e.g. feedback including your email address) are deleted on informal
+request to <a href="mailto:support@ixilotl.de">support@ixilotl.de</a> or by replying to our email –
+please write from the same address so that we can match it. We process such requests within
 <strong>30 days</strong>.</p>
+<p>For data from older versions (Firebase, up to 0.7.2), see
+<a href="#older-versions">“Note on older versions”</a>: it is only linked to a random device
+identifier, so we cannot attribute it to a person (Art. 11 GDPR); Google deletes it automatically after
+2 months or 90 days respectively.</p>
 
 <h2>Children</h2>
-<p>Ixilotl is aimed at primary-school-age children. The app does not collect personal data that
-would allow identification of a child. There is no chat feature, no social networks, and no
-advertising. The name entered in the game and the learning progress stay on the device only.
-Usage and crash data are only transmitted if a parent has consented (see "Consent by parents");
-consent can be withdrawn at any time in the settings.</p>
+<p>Ixilotl is designed for primary school children. The app does not send any data; there is no chat
+function, no social networking and no advertising. The name entered in the game and the learning
+progress remain exclusively on the device. Children may help fill in the feedback form, but only an
+adult can send it via their own email program (see <a href="#feedback">“Feedback from the
+app”</a>). Please do not send us any details about your child.</p>
 
 <h2>In-app purchases</h2>
 <p>The app currently offers no purchases. A full version is planned as a one-time purchase through
@@ -240,8 +217,14 @@ receive:</p>
   <li>your answers in the feedback form (category, stars, scales, free text),</li>
   <li>the pre-filled technical details: device manufacturer and model, Android version and app
     version. No device identifiers are included.</li>
+  <li><strong>only if you tick “Attach error log”</strong> (off by default): the
+    <a href="#error-log">error log</a> as readable text – times, app version, technical error
+    messages and program locations, no names and no learning progress. You can view it in the app
+    beforehand.</li>
 </ul>
-<p>You can review and change the email before sending it. Before the email program opens, there is
+<p>We receive <strong>your email address</strong> because the email is sent from your own
+account. We use it only to answer follow-up questions and to send you the tester thank-you. You can
+review and change the email before sending it. Before the email program opens, there is
 a short check for adults (entering a date of birth, which is not stored); children may fill in the
 form, but only an adult can send it.</p>
 <p><strong>Draft stays on the device:</strong> a partly completed feedback form is saved locally on
@@ -260,8 +243,9 @@ is uninstalled.</p>
     third parties. We generate the promo code in the Google Play Console; we do not share your email
     address with Google for this.</li>
   <li><strong>Retention:</strong> we delete your email address and the email once the code has been
-    sent, at the latest three months after the full version goes on sale. We keep the content of your
-    feedback only without your name and email address.</li>
+    sent, at the latest three months after the full version goes on sale. For feedback without a claim
+    to the thank-you, we delete them once any follow-up questions have been settled. We keep the
+    content of your feedback and any attached error log only without your name and email address.</li>
   <li><strong>Please do not send your child's data:</strong> please do not send us names, photos or
     other details about your child. If we receive such details anyway, we delete them.</li>
   <li><strong>Early deletion:</strong> an informal email is sufficient. We will then, however, no
