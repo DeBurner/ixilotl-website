@@ -62,11 +62,12 @@
   /* Handy-Rahmen für die Screenshots der App */
   .device { position: relative; aspect-ratio: 540 / 1171; background: #0b1230; border-radius: 34px; padding: 8px;
     box-shadow: 0 1px 0 rgba(16,26,60,.06), 0 24px 48px -24px rgba(16,26,60,.35); }
-  .device > img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 26px; }
+  .device > video, .device > img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 26px; }
 
   /* Startfläche: drei Handys nebeneinander im Fenster */
   .hero__window.phones { background: var(--surface); border-radius: var(--r-xl, 32px); overflow: hidden; }
-  .hero__window.phones > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+  .hero__window.phones picture { display: contents; }
+  .hero__window.phones img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 
   /* Abschnitte mit einem großen Handy neben dem Text */
   .split-phone { align-items: start; }
@@ -80,7 +81,7 @@
   .panel.phones-panel .device > img { border-radius: 20px; }
   .panel.photo-panel { --p-h: 340px; overflow: hidden; }
   .panel.photo-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  @media (max-width: 639px) { .panel.phones-panel, .panel.photo-panel { --p-h: 120px; } .panel.phones-panel { padding-top: 16px; } .panel.phones-panel .device { width: 96px; } #motivation h2 .muted { display: none; } #vertrauen, #fragen { --hm: 2; } .panel.phones-panel .device + .device { display: none; } #preis .device { width: 52%; } #preis { --hm: 2; } }
+  @media (max-width: 639px) { .panel.phones-panel, .panel.photo-panel { --p-h: 104px; } .panel.phones-panel { padding-top: 14px; } .panel.phones-panel .device { width: 88px; } #motivation .card > p { font-size: 15px; } #motivation h2 .muted { display: none; } #vertrauen, #fragen { --hm: 2; } .panel.phones-panel .device + .device { display: none; } #preis { --hm: 2; } }
 
   /* Problem: Zählen und Wissen */
   .zaehlen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; margin-bottom: 24px; }
@@ -108,6 +109,8 @@
   .nicht b { display: block; font-weight: 600; }
   .nicht span { color: var(--muted); font-size: 15px; }
   @media (max-width: 639px) { .nicht { grid-template-columns: 1fr; } .nicht li { padding-block: 10px; } }
+  #fragen .grid > .faq { align-self: stretch; }
+  .ixi-preis { display: block; width: 100%; height: auto; border-radius: 32px; }
   .ixi-figur { width: min(100%, 460px); margin-inline: auto; display: block; }
 
 </style>
@@ -117,7 +120,7 @@
      deal: hero centred, nav-centre, close-type, footer-columns, rhythm surface-pairs, buttons pill, mark: Logo der App
      palette: Markenfarben der App (Tiefseeblau, Korallenrot der Kiemen, helles Wasser), Schriften der App (Baloo 2, Nunito)
      moments: giant-type-pass im Abschnitt #problem
-     Bilder: alle aus der App; die Screenshots sind Platzhalter des alten UI, bis die Rive-Screenshots da sind. -->
+     Bilder: Screenshots der App 0.9.0 (ixi_grafik/store_bilder), Startbild mit _werkzeuge/hero_bild.py gebaut. -->
 
 <header class="nav nav--centre">
   <div class="wrap nav__bar">
@@ -150,18 +153,17 @@
         <p class="hero__lead nur-verkauf">Ixilotl macht aus dem Üben ein Spiel, das Kinder freiwillig spielen. 3 Stunden Spielzeit kostenlos mit allen Inhalten, danach 2,99 € einmalig. Keine Werbung, kein Abo.</p>
         <div class="btn-row"><a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl">Bei Google Play laden<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#app">So sieht Ixilotl aus</a></div>
       </div>
-      <!-- Platzhalter: alte Screenshots, später durch Rive-Screenshots ersetzen (Spielbildschirm, Reihentier, Farbkarte) -->
-      <div class="hero__window phones"><img src="images/hero-handys.webp" alt="Drei Bildschirme der App: ein Meerestier, eine Rechenaufgabe mit Zahlenfeld und die Farbkarte" width="2560" height="760" fetchpriority="high"></div>
+      <div class="hero__window phones"><picture><source media="(max-width: 639px)" srcset="images/hero-handys-mobil.webp" width="840" height="760"><img src="images/hero-handys.webp" srcset="images/hero-handys-1280.webp 1280w, images/hero-handys.webp 2560w" sizes="(max-width: 1023px) 100vw, 1280px" alt="Drei Bildschirme der App: Ixis Unterwasserwelt, eine Aufgabe mit Ziffernblock und die Diamanten der letzten 7 Tage" width="2560" height="760" fetchpriority="high"></picture></div>
     </div></div>
   </section>
 
   <section class="section statement" id="problem" data-moment="giant-type-pass" data-moment-opts='{"image": "/images/neu/banner.jpg", "travel": 50, "focusY": 70, "focus": 30}'>
     <div class="wrap">
-      <h2 class="mo-gt__type">7 × 8 = 56</h2>
+      <h2 class="mo-gt__type">7 · 8 = 56</h2>
       <div class="mo-gt__row"><p>Das muss man wissen, nicht ausrechnen. Wer noch zählt, ist langsam, macht Fehler und hat keinen Kopf frei für Teilen und schriftliches Rechnen. Auswendiglernen ist aber langweilig, darum wird oft zu wenig geübt.</p><a class="link" href="#app">So übt Ixilotl</a></div>
       <div class="zaehlen">
         <div><p class="t-label muted">Zählen</p><p class="zaehlen__z">7 + 7 + 7 + 7 + 7 + 7 + 7 + 7 …</p><p class="muted">langsam und fehleranfällig</p></div>
-        <div><p class="t-label muted">Wissen</p><p class="zaehlen__z">7 × 8 = 56</p><p class="muted">sofort abrufbar</p></div>
+        <div><p class="t-label muted">Wissen</p><p class="zaehlen__z">7 · 8 = 56</p><p class="muted">sofort abrufbar</p></div>
       </div>
       <p class="muted t-small">Im IQB-Bildungstrend 2021 verfehlten rund 22 % der Viertklässler die Mindeststandards in Mathematik.</p>
     </div>
@@ -176,14 +178,13 @@
             <p>Ixilotl hat ein Ziel: alle 100 Aufgaben des kleinen Einmaleins sicher abrufen. Dafür nutzt die App, was Spiele fesselnd macht, nur eben fürs Lernen statt für Werbung und Käufe.</p>
           </div>
           <ul class="app-punkte">
-            <li><b>Glitzer, Klang und ein jubelnder Ixi</b> bei jeder richtigen Antwort</li>
-            <li><b>Kurze Runden</b>, passend für 5 bis 15 Minuten am Tag</li>
+            <li><b>Zoom, Luftblasen und Konfetti</b> bei jeder richtigen Antwort</li>
+            <li><b>Kurze Missionen</b>, passend für 5 bis 15 Minuten am Tag</li>
             <li><b>Offline und ohne Konto</b>, der Lernstand bleibt auf dem Gerät</li>
           </ul>
         </div>
-        <!-- Platzhalter: hier kommt die Erfolgsanimation (MP4/WebM als <video autoplay muted loop playsinline>) -->
         <div class="span-5 start-8">
-          <div class="device"><img src="images/neu/anim_luftblasen.webp" alt="Erfolgsanimation nach einer richtigen Antwort"></div>
+          <div class="device"><video src="images/app/richtige_antwort.mp4" width="540" height="1172" preload="metadata" poster="images/app/richtige_antwort_poster.jpg" autoplay muted loop playsinline aria-label="Richtige Antwort 54: die Zahl zoomt groß ein, dann steigen Luftblasen über Ixi auf"></video></div>
         </div>
       </div>
     </div>
@@ -197,27 +198,27 @@
         </div>
         <div class="grid">
           <article class="card card--row card--open span-6">
-            <h3>Ein Meerestier für jede Reihe</h3>
-            <p>Der Hai bewacht die 8er-Reihe. Nach guten Runden wird aus dem grimmigen Tier ein Freund.</p>
-            <div class="panel phones-panel"><div class="device"><img src="images/neu/tier_grimmig.jpg" alt="Der Hai schaut grimmig"></div><div class="device"><img src="images/neu/tier_freund.jpg" alt="Der Hai ist ein Freund geworden"></div></div>
+            <h3>Ixis Unterwasserwelt füllt sich</h3>
+            <p>Am ersten Tag schwimmen nur wenige Tiere herum. Mit jedem Fortschritt wird die Welt voller.</p>
+            <div class="panel phones-panel"><div class="device"><img src="images/app/klein/welt_start-320.webp" srcset="images/app/klein/welt_start-180.webp 180w, images/app/klein/welt_start-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Die Unterwasserwelt am ersten Tag mit wenigen Tieren"></div><div class="device"><img src="images/app/klein/welt-320.webp" srcset="images/app/klein/welt-180.webp 180w, images/app/klein/welt-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Die Unterwasserwelt nach drei Wochen voller Tiere"></div></div>
           </article>
           <article class="card card--row card--open span-6">
-            <h3>Perlen und Diamanten sammeln</h3>
-            <p>Jede gute Runde bringt Perlen, eine erreichte Stufe geht nie verloren. Diamanten gibt es fürs Schneller- und Sichererwerden.</p>
-            <div class="panel phones-panel"><div class="device"><img src="images/neu/stufen.jpg" alt="Stufen und Perlen einer Reihe"></div><div class="device"><img src="images/neu/aufgaben.jpg" alt="Tagesaufgaben mit Belohnungen"></div></div>
+            <h3>Diamanten fürs Besserwerden</h3>
+            <p>Diamanten gibt es, wenn Ihr Kind weniger Fehler macht als beim besten Versuch. Leichtes zu wiederholen lohnt sich nicht.</p>
+            <div class="panel phones-panel"><div class="device"><img src="images/app/klein/diamanten-320.webp" srcset="images/app/klein/diamanten-180.webp 180w, images/app/klein/diamanten-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Diamanten der letzten 7 Tage und wie man sie verdient"></div><div class="device"><img src="images/app/klein/pokale-320.webp" srcset="images/app/klein/pokale-180.webp 180w, images/app/klein/pokale-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Pokale mit Ausdauer-Zielen wie Spieltagen und Missionen"></div></div>
           </article>
         </div>
       </div>
       <div class="grid">
         <article class="card card--row card--open span-6">
-          <h3>Ixi lobt und gibt Tipps</h3>
-          <p>Das Axolotl freut sich mit und hilft mit Eselsbrücken. Fehler kosten keine Punkte und keine Leben.</p>
-          <div class="panel phones-panel"><div class="device"><img src="images/neu/ixi_lob.jpg" alt="Ixi lobt nach einer Runde"></div><div class="device"><img src="images/screenshot-dialogue.jpg" alt="Ixi spricht mit dem Kind"></div></div>
+          <h3>Tagesaufgaben ohne Druck</h3>
+          <p>Kleine Ziele für heute verteilen das Üben auf viele Tage. Ein verpasster Tag wird nie bestraft.</p>
+          <div class="panel phones-panel"><div class="device"><img src="images/app/klein/aufgaben-320.webp" srcset="images/app/klein/aufgaben-180.webp 180w, images/app/klein/aufgaben-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Tagesaufgaben mit Diamanten als Belohnung"></div><div class="device"><img src="images/app/klein/tauchpfad-320.webp" srcset="images/app/klein/tauchpfad-180.webp 180w, images/app/klein/tauchpfad-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Der Tauchpfad: mit Punkten taucht Ixi tiefer und findet neue Dinge"></div></div>
         </article>
         <article class="card card--row card--open span-6">
           <h3>Ixi selbst gestalten</h3>
-          <p>Farben, Taucherbrille, Piratenhut und Farbwelten, alles durch Üben verdient und nie mit Geld kaufbar.</p>
-          <div class="panel photo-panel"><img src="images/neu/ixi_outfits.webp" alt="Ixi in verschiedenen Farben und mit Hüten"></div>
+          <p>17 Farben, Taucherbrille, Piratenhut und Effekte, alles durch Üben verdient und nie mit Geld kaufbar.</p>
+          <div class="panel photo-panel"><img src="images/app/ixi_farben.webp" width="1200" height="672" loading="lazy" alt="Ixi in sechs Farben, mit Taucherbrille und Piratenhut"></div>
         </article>
       </div>
     </div>
@@ -226,19 +227,19 @@
   <section class="section" id="lernweg" aria-labelledby="lernweg-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="lernweg-h">Erst verstehen, dann automatisieren</h2>
-        <p>Jede Reihe hat zwei Gruppen von Missionen.</p>
+        <h2 id="lernweg-h">Ixilotl übt gezielt, wo es hakt</h2>
+        <p>Die App merkt sich, welche Aufgaben noch langsam gehen, und holt sie wieder hervor.</p>
       </div>
       <div class="grid">
         <article class="card card--row card--open span-6">
-          <h3>Lernen mit dem Hunderterfeld</h3>
-          <p>Beim Entdecken fallen Päckchen mit Kugeln ins Feld. So wird sichtbar, was Malnehmen heißt.</p>
-          <div class="panel phones-panel"><div class="device"><img src="images/neu/entdecken.jpg" alt="Drei Päckchen mit je drei Kugeln im Hunderterfeld"></div></div>
+          <h3>Ixi findet die Schatzzahlen</h3>
+          <p>So heißen die Aufgaben, die noch haken. Ixi schlägt vor, genau die zu üben.</p>
+          <div class="panel phones-panel"><div class="device"><img src="images/app/klein/ixi_dialog-320.webp" srcset="images/app/klein/ixi_dialog-180.webp 180w, images/app/klein/ixi_dialog-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Ixi sagt: In der 8er-Reihe liegen noch ein paar Schatzzahlen versteckt"></div></div>
         </article>
         <article class="card card--row card--open span-6">
-          <h3>Üben vorwärts und rückwärts</h3>
-          <p>Rückwärts („? × 5 = 35“) zählt am meisten und bereitet das Teilen vor.</p>
-          <div class="panel phones-panel"><div class="device"><img src="images/neu/rueckwaerts.jpg" alt="Eine Rückwärts-Aufgabe: Welche Zahl fehlt?"></div></div>
+          <h3>Abrufen statt aufsagen</h3>
+          <p>Aufgabe sehen, Ergebnis tippen. Gezählt wird, wie sicher und wie schnell es geht.</p>
+          <div class="panel phones-panel"><div class="device"><img src="images/app/klein/mission-320.webp" srcset="images/app/klein/mission-180.webp 180w, images/app/klein/mission-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Die Aufgabe 7 · 6 mit Ziffernblock"></div></div>
         </article>
       </div>
     </div>
@@ -249,13 +250,13 @@
       <div class="grid split-phone">
         <div class="span-6 stack-5">
           <div class="section-head">
-            <h2 id="eltern-h">Die Farbkarte zeigt, was Ihr Kind schon kann.</h2>
-            <p>Alle 100 Aufgaben als Felder, die mit jedem Fortschritt heller leuchten. Ihr Kind sieht dasselbe wie Sie, eine versteckte Auswertung gibt es nicht.</p>
+            <h2 id="eltern-h">Die Einmaleins-Karte zeigt, was Ihr Kind schon kann.</h2>
+            <p>Alle 100 Aufgaben als Felder. Die Farbe zeigt, wie schnell eine Aufgabe zuletzt gelöst wurde, von dunkel über orange bis blitzschnell grün.</p>
           </div>
-          <p>Eine kurze Prüfung für Erwachsene steht nur vor dem Kauf und vor E-Mails.</p>
+          <p>Ihr Kind sieht dasselbe wie Sie, eine versteckte Auswertung gibt es nicht. Eine kurze Prüfung für Erwachsene steht nur vor dem Kauf und vor E-Mails.</p>
         </div>
         <div class="span-5 start-8">
-          <div class="device"><img src="images/neu/farbkarte.jpg" alt="Die Farbkarte mit allen 100 Aufgaben"></div>
+          <div class="device"><img src="images/app/einmaleins.webp" width="600" height="1301" loading="lazy" alt="Die Einmaleins-Karte: die 6er-, 7er- und 8er-Reihe sind noch orange"></div>
         </div>
       </div>
     </div>
@@ -276,9 +277,8 @@
           </ol>
           <p class="versprechen">Alles, was wir künftig für Ixilotl veröffentlichen, auch neue Reihen, bekommen Besitzer der Vollversion ohne Aufpreis. <a class="link" href="roadmap/">Was als Nächstes kommt</a><br>– Sebastian Buhl, Sumpfsoftwarestudio, Wiesbaden</p>
         </div>
-        <!-- Platzhalter: Kauf-Dialog im Elternbereich -->
         <div class="span-5 start-8">
-          <div class="device"><img src="images/neu/geschenk.jpg" alt="Der Bildschirm zur Vollversion in den Einstellungen"></div>
+          <img class="ixi-preis" loading="lazy" src="images/app/ixi_brille.webp" alt="Ixi mit Taucherbrille im Wasser" width="900" height="705">
         </div>
       </div>
     </div>
@@ -301,7 +301,7 @@
           </ul>
           <p>Lernstand und Spielstand bleiben auf dem Gerät. Daten erhalten wir nur, wenn Sie uns selbst schreiben, etwa über den Feedbackbogen der App.</p>
         </div>
-        <div class="span-5 start-8"><img class="ixi-figur" src="images/neu/ixi.png" alt="Ixi, das Axolotl, winkt" width="420" height="420"></div>
+        <div class="span-5 start-8"><img class="ixi-figur" loading="lazy" src="images/neu/ixi.png" alt="Ixi, das Axolotl, winkt" width="420" height="420"></div>
       </div>
     </div>
   </section>
@@ -340,7 +340,7 @@
     <div class="closing__links">
       <div class="grid">
         <div class="span-4 stack-4">
-          <a class="nav__logo" href="#top"><img src="images/ixilotl-icon.png" alt="" width="32" height="32">Ixilotl</a>
+          <a class="nav__logo" href="#top"><img src="images/ixilotl-icon.png" alt="" width="32" height="32" loading="lazy">Ixilotl</a>
           <p class="footer__lede">Das Einmaleins-Lernspiel vom Sumpfsoftwarestudio, Wiesbaden.</p>
         </div>
         <div class="span-2 footer__col"><h3>App</h3><ul><li><a href="#app">So sieht's aus</a></li><li><a href="#lernweg">Lernweg</a></li><li><a href="roadmap/">Was als Nächstes kommt</a></li></ul></div>
