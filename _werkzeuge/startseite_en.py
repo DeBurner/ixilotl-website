@@ -1,0 +1,141 @@
+"""Baut en/index.html aus der deutschen Startseite: Pfade anpassen, Texte ersetzen.
+Aufruf (im Repo-Ordner): python _werkzeuge/startseite_en.py
+Jeder deutsche Text muss genau einmal gefunden werden, sonst bricht das Skript ab.
+Nach Textänderungen auf der deutschen Seite hier die passende Zeile mit ändern."""
+import re
+
+s = open('index.html', encoding='utf-8').read()
+
+# 1. Pfade: die englische Seite liegt eine Ebene tiefer
+for pfx in ['fonts/', 'assets/', 'images/', 'roadmap/', 'tester-dankeschoen/']:
+    s = s.replace(f'href="{pfx}', f'href="../{pfx}').replace(f'src="{pfx}', f'src="../{pfx}').replace(f'poster="{pfx}', f'poster="../{pfx}')
+s = s.replace('srcset="images/', 'srcset="../images/').replace(', images/', ', ../images/')
+s = s.replace('<script type="module" src="assets/', '<script type="module" src="../assets/')
+
+T = [
+    ('<html lang="de"', '<html lang="en"'),
+    ('<title>Ixilotl: Einmaleins-Lernspiel für Kinder der Klasse 2 bis 4</title>', '<title>Ixilotl: times tables learning game for ages 7 to 10</title>'),
+    ('content="Das Einmaleins als Spiel, das Kinder freiwillig spielen. Ohne Werbung, ohne Abo und ohne Datensammlung. 3 Stunden Spielzeit kostenlos, danach 2,99 € einmalig."',
+     'content="The times tables as a game children choose to play. No ads, no subscription, no data collection. 3 hours of play free, then €2.99 once."'),
+    ('content="Ixilotl: Einmaleins-Lernspiel für Klasse 2 bis 4"', 'content="Ixilotl: times tables learning game for ages 7 to 10"'),
+    ('content="Das Einmaleins als Spiel. Ohne Werbung, ohne Abo, ohne Datensammlung."', 'content="The times tables as a game. No ads, no subscription, no data collection."'),
+    ('<link rel="canonical" href="https://ixilotl.de/">\n<link rel="alternate" hreflang="en" href="https://ixilotl.de/en/">',
+     '<link rel="canonical" href="https://ixilotl.de/en/">\n<link rel="alternate" hreflang="de" href="https://ixilotl.de/">'),
+    ('<a class="skip-link" href="#inhalt">Zum Inhalt</a>', '<a class="skip-link" href="#inhalt">Skip to content</a>'),
+    ('aria-label="Hauptmenü"', 'aria-label="Main menu"'),
+    ('href="#app">So sieht\'s aus</a></div>', 'href="#app">The app</a></div>'),
+    ('href="#eltern">Für Eltern</a></div>', 'href="#eltern">For parents</a></div>'),
+    ('href="#preis">Preis</a></div>', 'href="#preis">Price</a></div>'),
+    ('href="#fragen">Fragen</a></div>', 'href="#fragen">FAQ</a></div>'),
+    ('<a href="./" aria-current="page" lang="de">DE</a><a href="en/" lang="en">EN</a>', '<a href="../" lang="de">DE</a><a href="./" aria-current="page" lang="en">EN</a>'),
+    ('aria-label="Menü"', 'aria-label="Menu"'),
+    ('<span>Bis 30.11. Vollversion geschenkt</span><span class="muted">Bedingungen</span>', '<span>Until 30 Nov: full version free</span><span class="muted">Terms</span>'),
+    ('<span>3 Stunden kostenlos spielen</span><span class="muted">So geht\'s</span>', '<span>Play free for 3 hours</span><span class="muted">How it works</span>'),
+    ('<h1 id="hero-h">Das Einmaleins-Lernspiel für Klasse 2 bis 4</h1>', '<h1 id="hero-h">The times tables game for ages 7 to 10</h1>'),
+    ('Ixilotl macht aus dem Üben ein Spiel, das Kinder freiwillig spielen. Wer bis 30. November installiert, bekommt die Vollversion geschenkt. Keine Werbung, kein Abo.',
+     'Ixilotl turns practice into a game children choose to play. Install by 30 November and get the full version as a gift. Free of ads and subscriptions.'),
+    ('Ixilotl macht aus dem Üben ein Spiel, das Kinder freiwillig spielen. 3 Stunden Spielzeit kostenlos mit allen Inhalten, danach 2,99 € einmalig. Keine Werbung, kein Abo.',
+     'Ixilotl turns practice into a game children choose to play. 3 hours of play free with everything included, then €2.99 once. Free of ads and subscriptions.'),
+    ('Bei Google Play laden', 'Get it on Google Play'),
+    ('>So sieht Ixilotl aus</a>', '>See the app</a>'),
+    ('alt="Drei Bildschirme der App: Ixis Unterwasserwelt, eine Aufgabe mit Ziffernblock und die Diamanten der letzten 7 Tage"', 'alt="Three app screens: Ixi\'s underwater world, a question with a number pad and the diamonds of the last 7 days"'),
+    ('<p>Das muss man wissen, nicht ausrechnen. Wer noch zählt, ist langsam, macht Fehler und hat keinen Kopf frei für Teilen und schriftliches Rechnen. Auswendiglernen ist aber langweilig, darum wird oft zu wenig geübt.</p><a class="link" href="#app">So übt Ixilotl</a>',
+     '<p>Children need to know this, not work it out. Counting up is slow, error-prone and leaves no room for division and long multiplication. But memorising is boring, so it often gets too little practice.</p><a class="link" href="#app">See how Ixilotl practises</a>'),
+    ('<p class="t-label muted">Zählen</p>', '<p class="t-label muted">Counting</p>'),
+    ('<p class="muted">langsam und fehleranfällig</p>', '<p class="muted">slow and error-prone</p>'),
+    ('<p class="t-label muted">Wissen</p>', '<p class="t-label muted">Knowing</p>'),
+    ('<p class="muted">sofort abrufbar</p>', '<p class="muted">recalled instantly</p>'),
+    ('Im IQB-Bildungstrend 2021 verfehlten rund 22 % der Viertklässler die Mindeststandards in Mathematik.', 'In Germany\'s IQB education study 2021, about 22% of fourth graders missed the minimum standards in maths.'),
+    ('<h2 id="app-h">Die App belohnt jede richtige Antwort</h2>', '<h2 id="app-h">The app rewards every right answer</h2>'),
+    ('<p>Ixilotl hat ein Ziel: alle 100 Aufgaben des kleinen Einmaleins sicher abrufen. Dafür nutzt die App, was Spiele fesselnd macht, nur eben fürs Lernen statt für Werbung und Käufe.</p>',
+     '<p>Ixilotl has one goal: recall all 100 facts of the times tables up to 10 × 10 with confidence. It uses what makes games gripping, aimed at learning instead of ads and purchases.</p>'),
+    ('<li><b>Zoom, Luftblasen und Konfetti</b> bei jeder richtigen Antwort</li>', '<li><b>Zoom, bubbles and confetti</b> for every right answer</li>'),
+    ('<li><b>Kurze Missionen</b>, passend für 5 bis 15 Minuten am Tag</li>', '<li><b>Short missions</b> that fit 5 to 15 minutes a day</li>'),
+    ('<li><b>Offline und ohne Konto</b>, der Lernstand bleibt auf dem Gerät</li>', '<li><b>Offline and without an account</b>, progress stays on the device</li>'),
+    ('aria-label="Richtige Antwort 54: die Zahl zoomt groß ein, dann steigen Luftblasen über Ixi auf"', 'aria-label="Right answer 54: the number zooms in large, then bubbles rise over Ixi"'),
+    ('Spielelemente, die beim Üben halten. <span class="muted">Keines verleitet zum Geldausgeben.</span>', 'Game elements that keep children practising. <span class="muted">None of them push spending.</span>'),
+    ('<h3>Ixis Unterwasserwelt füllt sich</h3>', '<h3>Ixi\'s underwater world fills up</h3>'),
+    ('<p>Am ersten Tag schwimmen nur wenige Tiere herum. Mit jedem Fortschritt wird die Welt voller.</p>', '<p>On day one only a few animals swim around. With every step forward the world gets busier.</p>'),
+    ('alt="Die Unterwasserwelt am ersten Tag mit wenigen Tieren"', 'alt="The underwater world on day one with few animals"'),
+    ('alt="Die Unterwasserwelt nach drei Wochen voller Tiere"', 'alt="The underwater world after three weeks, full of animals"'),
+    ('<h3>Diamanten fürs Besserwerden</h3>', '<h3>Diamonds for getting better</h3>'),
+    ('<p>Diamanten gibt es, wenn Ihr Kind weniger Fehler macht als beim besten Versuch. Leichtes zu wiederholen lohnt sich nicht.</p>', '<p>Your child earns diamonds by making fewer mistakes than in their best attempt. Repeating easy facts does not pay.</p>'),
+    ('alt="Diamanten der letzten 7 Tage und wie man sie verdient"', 'alt="Diamonds of the last 7 days and how to earn them"'),
+    ('alt="Pokale mit Ausdauer-Zielen wie Spieltagen und Missionen"', 'alt="Trophies with stamina goals such as days played and missions"'),
+    ('<h3>Tagesaufgaben ohne Druck</h3>', '<h3>Daily tasks without pressure</h3>'),
+    ('<p>Kleine Ziele für heute verteilen das Üben auf viele Tage. Ein verpasster Tag wird nie bestraft.</p>', '<p>Small goals for today spread practice over many days. A missed day is never punished.</p>'),
+    ('alt="Tagesaufgaben mit Diamanten als Belohnung"', 'alt="Daily tasks with diamonds as rewards"'),
+    ('alt="Der Tauchpfad: mit Punkten taucht Ixi tiefer und findet neue Dinge"', 'alt="The dive path: points take Ixi deeper to find new things"'),
+    ('<h3>Ixi selbst gestalten</h3>', '<h3>Style Ixi your way</h3>'),
+    ('<p>17 Farben, Taucherbrille, Piratenhut und Effekte, alles durch Üben verdient und nie mit Geld kaufbar.</p>', '<p>17 colours, diving goggles, a pirate hat and effects, all earned by practising and never for sale.</p>'),
+    ('alt="Ixi in sechs Farben, mit Taucherbrille und Piratenhut"', 'alt="Ixi in six colours, with diving goggles and a pirate hat"'),
+    ('<h2 id="lernweg-h">Ixilotl übt gezielt, wo es hakt</h2>', '<h2 id="lernweg-h">Ixilotl targets the facts that are still slow</h2>'),
+    ('<p>Die App merkt sich, welche Aufgaben noch langsam gehen, und holt sie wieder hervor.</p>', '<p>The app remembers which facts are still slow and brings them back.</p>'),
+    ('<h3>Ixi findet die Schatzzahlen</h3>', '<h3>Ixi finds the treasure numbers</h3>'),
+    ('<p>So heißen die Aufgaben, die noch haken. Ixi schlägt vor, genau die zu üben.</p>', '<p>That is what Ixi calls the facts that still trip your child up, and suggests practising exactly those.</p>'),
+    ('alt="Ixi sagt: In der 8er-Reihe liegen noch ein paar Schatzzahlen versteckt"', 'alt="Ixi says a few treasure numbers are still hidden in the 8 times table (app screen in German)"'),
+    ('<h3>Abrufen statt aufsagen</h3>', '<h3>Recall instead of reciting</h3>'),
+    ('<p>Aufgabe sehen, Ergebnis tippen. Gezählt wird, wie sicher und wie schnell es geht.</p>', '<p>See the question, tap the answer. What counts is how sure and how fast it is.</p>'),
+    ('alt="Die Aufgabe 7 · 6 mit Ziffernblock"', 'alt="The question 7 · 6 with a number pad"'),
+    ('<h2 id="eltern-h">Die Einmaleins-Karte zeigt, was Ihr Kind schon kann.</h2>', '<h2 id="eltern-h">The times table map shows what your child knows.</h2>'),
+    ('<p>Alle 100 Aufgaben als Felder. Die Farbe zeigt, wie schnell eine Aufgabe zuletzt gelöst wurde, von dunkel über orange bis blitzschnell grün.</p>',
+     '<p>All 100 facts as squares. The colour shows how fast a fact was last answered, from dark through orange to lightning-fast green.</p>'),
+    ('<p>Ihr Kind sieht dasselbe wie Sie, eine versteckte Auswertung gibt es nicht. Eine kurze Prüfung für Erwachsene steht nur vor dem Kauf und vor E-Mails.</p>',
+     '<p>Your child sees the same as you; there is no hidden report. A short adult check appears only before the purchase and before emails.</p>'),
+    ('alt="Die Einmaleins-Karte: die 6er-, 7er- und 8er-Reihe sind noch orange"', 'alt="The times table map: the 6, 7 and 8 times tables are still orange"'),
+    ('<h2 id="preis-h">3 Stunden spielen, dann entscheiden</h2>', '<h2 id="preis-h">Play for 3 hours, then decide</h2>'),
+    ('<b>Bis einschließlich 30. November</b> ist Ixilotl ganz kostenlos. Wer bis dahin installiert, behält die Vollversion auf diesem Gerät. <a class="link" href="../tester-dankeschoen/">Bedingungen lesen</a>',
+     '<b>Until 30 November inclusive</b> Ixilotl is completely free. Install by then and keep the full version on that device. <a class="link" href="../tester-dankeschoen/" lang="de">Read the terms (German)</a>'),
+    ('<li><b>Installieren</b><p>Kostenlos bei Google Play, ohne Konto.</p></li>', '<li><b>Install</b><p>Free on Google Play, no account.</p></li>'),
+    ('<li><b>3 Stunden Spielzeit</b><p>Alle Reihen, alle Missionen, nichts gesperrt.</p></li>', '<li><b>3 hours of play</b><p>All tables, all missions, nothing locked.</p></li>'),
+    ('<li><b>Behalten für 2,99 €</b><p>Einmalig im Elternbereich. Kein Abo, keine Werbung. Endpreis inkl. MwSt.</p></li>', '<li><b>Keep it for €2.99</b><p>A single payment in the parents\' area, never a subscription. Final price incl. VAT.</p></li>'),
+    ('Alles, was wir künftig für Ixilotl veröffentlichen, auch neue Reihen, bekommen Besitzer der Vollversion ohne Aufpreis. <a class="link" href="../roadmap/">Was als Nächstes kommt</a>',
+     'Owners of the full version get everything we publish for Ixilotl in the future, new tables included, at no extra cost. <a class="link" href="roadmap/">See what comes next</a>'),
+    ('alt="Ixi mit Taucherbrille im Wasser"', 'alt="Ixi with diving goggles in the water"'),
+    ('<h2 id="vertrauen-h">Was Sie bei Ixilotl nicht finden</h2>', '<h2 id="vertrauen-h">What you won\'t find in Ixilotl</h2>'),
+    ('<li><b>Keine Werbung</b><span>in keiner Version</span></li>', '<li><b>No ads</b><span>in any version</span></li>'),
+    ('<li><b>Kein Abo</b><span>einmal kaufen, fertig</span></li>', '<li><b>No subscription</b><span>buy once, done</span></li>'),
+    ('<li><b>Keine Datensammlung</b><span>Die App sendet nichts. <a class="link" href="datenschutz/">Datenschutz</a></span></li>', '<li><b>No data collection</b><span>The app sends nothing. <a class="link" href="datenschutz/">Privacy</a></span></li>'),
+    ('<li><b>Keine Käufe im Spiel</b><span>Diamanten gibt es nur fürs Üben</span></li>', '<li><b>No in-game purchases</b><span>diamonds come only from practice</span></li>'),
+    ('<li><b>Keine Glücksräder</b><span>kein Zufall bei Belohnungen</span></li>', '<li><b>No prize wheels</b><span>no chance in rewards</span></li>'),
+    ('<li><b>Keine Ranglisten</b><span>jedes Kind übt für sich</span></li>', '<li><b>No leaderboards</b><span>each child practises for themselves</span></li>'),
+    ('<li><b>Kein Chat</b><span>kein Kontakt zu Fremden</span></li>', '<li><b>No chat</b><span>no contact with strangers</span></li>'),
+    ('<li><b>Kein Konto</b><span>läuft offline, ohne Anmeldung</span></li>', '<li><b>No account</b><span>works offline, no sign-in</span></li>'),
+    ('<p>Lernstand und Spielstand bleiben auf dem Gerät. Daten erhalten wir nur, wenn Sie uns selbst schreiben, etwa über den Feedbackbogen der App.</p>', '<p>Learning and game progress stay on the device. We only receive data if you write to us yourself, for example through the app\'s feedback form.</p>'),
+    ('alt="Ixi, das Axolotl, winkt"', 'alt="Ixi the axolotl waving"'),
+    ('<h2 id="fragen-h">Häufige Fragen</h2>', '<h2 id="fragen-h">Frequently asked questions</h2>'),
+    ('<h3>Was passiert nach den 3 Stunden?</h3><p>Die laufende Mission wird noch beendet, dann zeigt Ixilotl eine Urkunde mit dem Lernstand. Weiter geht es nach dem Kauf im Elternbereich hinter der Erwachsenen-Abfrage.</p>',
+     '<h3>What happens after the 3 hours?</h3><p>The current mission is finished, then Ixilotl shows a certificate with the learning progress. Play continues after the purchase in the parents\' area behind the adult check.</p>'),
+    ('<h3>Wann läuft die Spielzeit?</h3><p>Solange Ixilotl geöffnet ist. Auf Lesebildschirmen mit Pause-Symbol hält die Uhr an.</p>', '<h3>When does the play time run?</h3><p>While Ixilotl is open. On reading screens with a pause symbol the clock stops.</p>'),
+    ('<h3>Gilt der Kauf auf einem neuen Handy?</h3><p>Ja. Der Kauf hängt an Ihrem Google-Konto und gilt auch nach einer Neuinstallation. Der Lernstand bleibt aber auf dem alten Gerät.</p>',
+     '<h3>Does the purchase work on a new phone?</h3><p>Yes. The purchase belongs to your Google account and also works after reinstalling. The learning progress stays on the old device, though.</p>'),
+    ('<h3>Braucht die App Internet?</h3><p>Nein. Ixilotl läuft offline und ohne Konto. Lernstand und Spielstand bleiben auf dem Gerät.</p>', '<h3>Does the app need the internet?</h3><p>No. Ixilotl works offline and without an account. Learning and game progress stay on the device.</p>'),
+    ('<h3>Gibt es Ixilotl fürs iPhone?</h3><p>Noch nicht. Eine Version für Apple-Geräte ist geplant. Eigene Profile für Geschwister ebenso.</p>', '<h3>Is Ixilotl available for iPhone?</h3><p>Not yet. A version for Apple devices is planned, and so are separate profiles for siblings.</p>'),
+    ('<h3>Bleibt die App, wie sie ist?</h3><p>Nein, sie bekommt regelmäßig Updates. Inhalte der Vollversion nehmen wir nicht weg und machen sie nicht nachträglich kostenpflichtig. <a class="link" href="../roadmap/">Was als Nächstes kommt</a></p>',
+     '<h3>Will the app stay as it is?</h3><p>No, it gets regular updates. We never remove content of the full version or charge for it later. <a class="link" href="roadmap/">See what comes next</a></p>'),
+    ('<h3>Gibt es eine Version für Schulen?</h3><p>Sie ist geplant. Ixilotl läuft schon heute ohne Konto, Lernergebnisse verlassen das Gerät nie. <a class="link" href="mailto:support@ixilotl.de?subject=Ixilotl%20f%C3%BCr%20die%20Schule">Schreiben Sie uns</a></p>',
+     '<h3>Is there a version for schools?</h3><p>It is planned. Ixilotl already works without an account, and results never leave the device. <a class="link" href="mailto:support@ixilotl.de?subject=Ixilotl%20for%20schools">Email us</a></p>'),
+    ('<h3>Wer steckt dahinter?</h3><p>Sebastian Buhl aus Wiesbaden: Pädagoge, Vater, Softwareentwickler. Er kennt das Problem aus Unterricht, Nachhilfe und vom Küchentisch.</p>',
+     '<h3>Who is behind it?</h3><p>Sebastian Buhl from Wiesbaden, Germany: educator, father, software developer. He knows the problem from teaching, tutoring and the kitchen table.</p>'),
+    ('<h2 id="close-h">Ixilotl kostenlos ausprobieren</h2>', '<h2 id="close-h">Try Ixilotl for free</h2>'),
+    ('<p class="nur-fruehstart">Bis 30. November installieren und die Vollversion geschenkt bekommen.</p>', '<p class="nur-fruehstart">Install by 30 November and get the full version as a gift.</p>'),
+    ('<p class="nur-verkauf">3 Stunden Spielzeit mit allen Inhalten, danach 2,99 € einmalig.</p>', '<p class="nur-verkauf">3 hours of play with everything included, then €2.99 once.</p>'),
+    ('<p class="footer__lede">Das Einmaleins-Lernspiel vom Sumpfsoftwarestudio, Wiesbaden.</p>', '<p class="footer__lede">The times tables game by Sumpfsoftwarestudio, Wiesbaden.</p>'),
+    ('<a href="#app">So sieht\'s aus</a></li><li><a href="#lernweg">Lernweg</a></li><li><a href="../roadmap/">Was als Nächstes kommt</a>', '<a href="#app">The app</a></li><li><a href="#lernweg">How it teaches</a></li><li><a href="roadmap/">What comes next</a>'),
+    ('<h3>Eltern</h3><ul><li><a href="#preis">Preis</a></li><li><a href="#fragen">Fragen</a></li><li><a href="../tester-dankeschoen/">Tester-Dankeschön</a></li>', '<h3>Parents</h3><ul><li><a href="#preis">Price</a></li><li><a href="#fragen">FAQ</a></li><li><a href="../tester-dankeschoen/" lang="de">Tester thank-you (German)</a></li>'),
+    ('<h3>Rechtliches</h3><ul><li><a href="impressum/">Impressum</a></li><li><a href="datenschutz/">Datenschutz</a></li><li><a href="nutzungsbedingungen/">Nutzungsbedingungen</a></li>', '<h3>Legal</h3><ul><li><a href="impressum/">Legal notice</a></li><li><a href="datenschutz/">Privacy policy</a></li><li><a href="nutzungsbedingungen/">Terms of use</a></li>'),
+    ('<h3>Kontakt</h3>', '<h3>Contact</h3>'),
+    ('<li><a href="en/">English</a></li>', '<li><a href="../" lang="de">Deutsch</a></li>'),
+    ('aria-label="Schnellzugriff"', 'aria-label="Quick access"'),
+]
+for a, b in T:
+    n = s.count(a)
+    if n == 0:
+        raise SystemExit('nicht gefunden: ' + a[:80])
+    s = s.replace(a, b)
+
+# Was nach dem Übersetzen noch deutsch aussieht, melden
+rest = re.findall(r'>[^<>]*(?:ä|ö|ü|ß|Ä|Ö|Ü)[^<>]*<', s.split('<body>')[1])
+rest = [r for r in rest if 'Sumpfsoftwarestudio' not in r]
+open('en/index.html', 'w', encoding='utf-8').write(s)
+print('en/index.html geschrieben; noch mit Umlaut:', rest[:20])

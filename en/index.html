@@ -1,299 +1,367 @@
-<!DOCTYPE html>
-<!-- Phase: "vorab" until the open test is live on Google Play, then set to "live". -->
-<html lang="en" data-phase="live">
+<!doctype html>
+<!-- Phase: "fruehstart" bis einschließlich 30.11.2026, danach "verkauf".
+     Das Skript unten stellt am 1.12.2026 (deutsche Zeit) automatisch um; ohne Skript gilt der Wert hier.
+     Elemente mit class="nur-fruehstart" bzw. "nur-verkauf" erscheinen nur in ihrer Phase. -->
+<html lang="en" data-phase="fruehstart" data-type="software" data-radius="round" data-ground="sky" data-buttons="pill" data-motion>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ixilotl – Times tables, truly learned</title>
-<meta name="description" content="Ixilotl turns times-table practice into a game children play of their own accord. For ages 6–10. No ads, no subscription, no data collection – progress stays on the device.">
-<meta property="og:title" content="Ixilotl – Times tables, truly learned">
-<meta property="og:description" content="The times-table app children actually want to play. No ads, no subscription, no data collection.">
-<meta property="og:image" content="https://ixilotl.de/images/neu/banner.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ixilotl: times tables learning game for ages 7 to 10</title>
+<meta name="description" content="The times tables as a game children choose to play. No ads, no subscription, no data collection. 3 hours of play free, then €2.99 once.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ixilotl: times tables learning game for ages 7 to 10">
+<meta property="og:description" content="The times tables as a game. No ads, no subscription, no data collection.">
+<meta property="og:image" content="https://ixilotl.de/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="../images/ixilotl-icon.png">
 <link rel="apple-touch-icon" href="../images/ixilotl-icon.png">
+<meta name="theme-color" content="#f6fafb">
+<link rel="canonical" href="https://ixilotl.de/en/">
+<link rel="alternate" hreflang="de" href="https://ixilotl.de/">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<script>(function(){var d=new Date(),s=d.toLocaleDateString('sv-SE',{timeZone:'Europe/Berlin'});if(s>='2026-12-01')document.documentElement.dataset.phase='verkauf';})()</script>
 <link rel="stylesheet" href="../fonts/fonts.css">
-<link rel="stylesheet" href="../css/start.css">
+<link rel="stylesheet" href="../assets/system.css">
+<link rel="stylesheet" href="../assets/ui/cards.css">
+<link rel="stylesheet" href="../assets/motion/motion.css">
+<link rel="stylesheet" href="../assets/layout/layout.css">
+<link rel="stylesheet" href="../assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #f6fafb; --p-surface: #e4f2f4; --p-ink: #101a3c; --p-muted: #3b4664;
+  --p-accent: #c4302a; --p-accent-ink: #ffffff; --p-action: #c4302a; --p-action-ink: #ffffff;
+  --p-inv-bg: #101a3c; --p-inv-surface: #1d2848; --p-inv-ink: #f6fafb; --p-inv-muted: #959eaf;
+  --p-inv-accent: #d63b33; --p-inv-accent-ink: #ffffff; --p-inv-action: #d63b33; --p-inv-action-ink: #ffffff;
+  /* die Schriften der App, selbst gehostet (fonts/fonts.css): keine Anfrage an Google */
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-text: "Nunito", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.01em;
+  --display-tracking-xl: -0.02em;
+  --ly-scale: 0.86;
+}
+</style>
+<link rel="stylesheet" href="../assets/ui/base.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="../assets/moments/moments.js">
+<link rel="modulepreload" href="../assets/moments/lib.js">
+<link rel="modulepreload" href="../assets/moments/giant-type-pass/moment.js">
+<style>
+  /* Phasen */
+  html[data-phase="fruehstart"] .nur-verkauf, html[data-phase="verkauf"] .nur-fruehstart { display: none !important; }
+
+  /* Logo der App statt eines Zeichens */
+  .nav__logo img { width: 32px; height: 32px; border-radius: 8px; }
+  .lang { display: inline-flex; gap: 2px; font-size: 14px; }
+  .lang a { padding: 4px 8px; border-radius: 999px; color: var(--muted); text-decoration: none; }
+  .lang a[aria-current] { color: var(--ink); background: var(--surface); }
+
+  /* Handy-Rahmen für die Screenshots der App */
+  .device { position: relative; aspect-ratio: 540 / 1171; background: #0b1230; border-radius: 34px; padding: 8px;
+    box-shadow: 0 1px 0 rgba(16,26,60,.06), 0 24px 48px -24px rgba(16,26,60,.35); }
+  .device > video, .device > img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 26px; }
+
+  /* Startfläche: drei Handys nebeneinander im Fenster */
+  .hero__window.phones { background: var(--surface); border-radius: var(--r-xl, 32px); overflow: hidden; }
+  .hero__window.phones picture { display: contents; }
+  .hero__window.phones img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+
+  /* Abschnitte mit einem großen Handy neben dem Text */
+  .split-phone { align-items: start; }
+  .split-phone .device { width: min(100%, 300px); margin-inline: auto; }
+  @media (max-width: 1023px) { .split-phone .device { width: min(70%, 260px); } }
+
+  /* Karten mit Handys im Panel */
+  .panel.phones-panel { --p-h: 340px; display: flex; justify-content: center; align-items: flex-start; gap: 20px;
+    background: var(--surface); padding: 28px 24px 0; overflow: hidden; }
+  .panel.phones-panel .device { width: 170px; flex: none; border-radius: 26px; padding: 6px; }
+  .panel.phones-panel .device > img { border-radius: 20px; }
+  .panel.photo-panel { --p-h: 340px; overflow: hidden; }
+  .panel.photo-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 639px) { .panel.phones-panel, .panel.photo-panel { --p-h: 104px; } .panel.phones-panel { padding-top: 14px; } .panel.phones-panel .device { width: 88px; } #motivation .card > p { font-size: 15px; } #motivation h2 .muted { display: none; } #vertrauen, #fragen { --hm: 2; } .panel.phones-panel .device + .device { display: none; } #preis { --hm: 2; } }
+
+  /* Problem: Zählen und Wissen */
+  .zaehlen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; margin-bottom: 24px; }
+  .zaehlen > div { background: var(--surface); border-radius: 24px; padding: 24px 28px; display: grid; gap: 6px; }
+  .zaehlen__z { font: 500 clamp(22px, 2.4vw, 34px)/1.2 var(--font-display); }
+  @media (max-width: 639px) { .zaehlen { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; } .zaehlen > div { padding: 16px 20px; } }
+  /* So sieht's aus: drei Punkte */
+  .app-punkte { display: grid; gap: 0; margin-top: 16px; }
+  .app-punkte li { padding-block: 16px; border-bottom: 1px solid var(--line); color: var(--muted); }
+  .app-punkte b { color: var(--ink); font-weight: 600; }
+  /* Preis: drei Schritte */
+  .steps3 { counter-reset: s; display: grid; gap: 0; }
+  .steps3 li { counter-increment: s; display: grid; grid-template-columns: 48px 1fr; gap: 4px 16px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+  .steps3 li:first-child { padding-top: 0; }
+  .steps3 li::before { content: counter(s); grid-row: span 2; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--ink); color: var(--bg); font: 600 18px/1 var(--font-display); }
+  .steps3 b { font: 500 var(--t-lead)/1.3 var(--font-text); }
+  .steps3 p { color: var(--muted); }
+  .hinweis b { color: var(--ink); font-weight: 700; }
+  .versprechen { margin-top: 24px; color: var(--muted); max-width: 60ch; }
+
+  /* Vertrauen: acht Punkte */
+  .nicht { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+  .nicht li { padding-block: 22px; border-bottom: 1px solid var(--line); }
+  .nicht b { display: block; font-weight: 600; }
+  .nicht span { color: var(--muted); font-size: 15px; }
+  @media (max-width: 639px) { .nicht { grid-template-columns: 1fr; } .nicht li { padding-block: 10px; } }
+  #fragen .grid > .faq { align-self: stretch; }
+  .ixi-preis { display: block; width: 100%; height: auto; border-radius: 32px; }
+  .ixi-figur { width: min(100%, 460px); margin-inline: auto; display: block; }
+
+</style>
 </head>
 <body>
+<!-- type: software (Lern-App für Kinder; Käufer: Eltern)
+     deal: hero centred, nav-centre, close-type, footer-columns, rhythm surface-pairs, buttons pill, mark: Logo der App
+     palette: Markenfarben der App (Tiefseeblau, Korallenrot der Kiemen, helles Wasser), Schriften der App (Baloo 2, Nunito)
+     moments: giant-type-pass im Abschnitt #problem
+     Bilder: Screenshots der App 0.9.0 (ixi_grafik/store_bilder), Startbild mit _werkzeuge/hero_bild.py gebaut. -->
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="./"><img src="../images/ixilotl-icon.png" alt="">Ixilotl</a>
-    <nav>
-      <a class="hide-sm" href="#motivation">How it motivates</a>
-      <a class="hide-sm" href="#parents">For parents</a>
-      <a class="hide-sm" href="#price">Price</a>
-      <a class="hide-sm" href="#faq">FAQ</a>
-      <span class="lang"><a href="../">DE</a><a class="on" href="./">EN</a></span>
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#inhalt">Skip to content</a>
+    <a class="nav__logo" href="#top"><img src="../images/ixilotl-icon.png" alt="" width="32" height="32">Ixilotl</a>
+    <nav class="nav__links" aria-label="Main menu">
+      <div class="nav__item"><a class="nav__link" href="#app">The app</a></div>
+      <div class="nav__item"><a class="nav__link" href="#eltern">For parents</a></div>
+      <div class="nav__item"><a class="nav__link" href="#preis">Price</a></div>
+      <div class="nav__item"><a class="nav__link" href="#fragen">FAQ</a></div>
     </nav>
+    <div class="nav__actions">
+      <span class="lang"><a href="../" lang="de">DE</a><a href="./" aria-current="page" lang="en">EN</a></span>
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl">Get it on Google Play</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </header>
 
-<!-- 1 Hero -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="badge nur-vorab">Open test coming soon</span>
-      <span class="badge nur-live">Now in open test</span>
-      <h1>Times tables.<br><em>Truly learned.</em><br>No stress.</h1>
-      <p class="lead">Ixilotl turns practice into a game children play of their own accord. No ads, no subscription, no data collection.</p>
-      <div class="ctas">
-        <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
-        <span class="btn btn-store nur-vorab" aria-disabled="true"><span><small>Coming soon</small>on Google Play</span></span>
-        <a class="btn btn-ghost" href="#motivation">How it works</a>
+<main id="top">
+  <section class="hero hero--centred" data-enter aria-labelledby="hero-h" id="inhalt">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__c">
+        <a class="pill nur-fruehstart" href="../tester-dankeschoen/"><span>Until 30 Nov: full version free</span><span class="muted">Terms</span></a>
+        <a class="pill nur-verkauf" href="#preis"><span>Play free for 3 hours</span><span class="muted">How it works</span></a>
+        <h1 id="hero-h">The times tables game for ages 7 to 10</h1>
+        <p class="hero__lead nur-fruehstart">Ixilotl turns practice into a game children choose to play. Install by 30 November and get the full version as a gift. Free of ads and subscriptions.</p>
+        <p class="hero__lead nur-verkauf">Ixilotl turns practice into a game children choose to play. 3 hours of play free with everything included, then €2.99 once. Free of ads and subscriptions.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl">Get it on Google Play<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#app">See the app</a></div>
       </div>
-      <ul class="checks">
-        <li>Ages 6–10</li><li>Offline, no account</li><li>No ads</li><li>Android · iPhone planned</li>
-      </ul>
-    </div>
-    <div class="hero-art hero-phones">
-      <div class="phone"><img src="../images/neu/runde.jpg" width="540" height="1171" alt="A practice round: 8 × 5 = 40 is correct, Ixi cheers, points fly in"></div>
-      <img class="hero-ixi" src="../images/neu/ixi.png" width="420" height="420" alt="">
-    </div>
-  </div>
-  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,24L80,30C160,36,320,48,480,46C640,44,800,28,960,24C1120,20,1280,28,1360,32L1440,36L1440,60L0,60Z"/></svg>
-</section>
+      <div class="hero__window phones"><picture><source media="(max-width: 639px)" srcset="../images/hero-handys-mobil.webp" width="840" height="760"><img src="../images/hero-handys.webp" srcset="../images/hero-handys-1280.webp 1280w, ../images/hero-handys.webp 2560w" sizes="(max-width: 1023px) 100vw, 1280px" alt="Three app screens: Ixi's underwater world, a question with a number pad and the diamonds of the last 7 days" width="2560" height="760" fetchpriority="high"></picture></div>
+    </div></div>
+  </section>
 
-<!-- 2 Problem -->
-<section id="problem">
-  <div class="wrap two">
-    <div>
-      <p class="kicker">The problem</p>
-      <h2>Times tables need to be known – not worked out.</h2>
-      <p class="intro">A child who still counts their way to 7 × 8 is slow, makes mistakes and has no head space left for what comes next: division, written arithmetic, fractions. But memorising is boring. So it often doesn't get practised enough – and then there are arguments at the kitchen table.</p>
-      <p class="source">In Germany's IQB Education Trend 2021, around 22 % of fourth-graders missed the minimum standards in mathematics.</p>
+  <section class="section statement" id="problem" data-moment="giant-type-pass" data-moment-opts='{"image": "/images/neu/banner.jpg", "travel": 50, "focusY": 70, "focus": 30}'>
+    <div class="wrap">
+      <h2 class="mo-gt__type">7 · 8 = 56</h2>
+      <div class="mo-gt__row"><p>Children need to know this, not work it out. Counting up is slow, error-prone and leaves no room for division and long multiplication. But memorising is boring, so it often gets too little practice.</p><a class="link" href="#app">See how Ixilotl practises</a></div>
+      <div class="zaehlen">
+        <div><p class="t-label muted">Counting</p><p class="zaehlen__z">7 + 7 + 7 + 7 + 7 + 7 + 7 + 7 …</p><p class="muted">slow and error-prone</p></div>
+        <div><p class="t-label muted">Knowing</p><p class="zaehlen__z">7 · 8 = 56</p><p class="muted">recalled instantly</p></div>
+      </div>
+      <p class="muted t-small">In Germany's IQB education study 2021, about 22% of fourth graders missed the minimum standards in maths.</p>
     </div>
-    <div class="compare">
-      <div class="slow"><b>Counting</b><code>7 + 7 + 7 + 7 + 7 + 7 + 7 + 7</code><div class="big">…</div>slow and error-prone</div>
-      <div class="fast"><b>Knowing</b><code>7 × 8</code><div class="big">56</div>recalled instantly</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 3 Solution -->
-<section class="alt" id="solution">
-  <div class="wrap two">
-    <div class="phones">
-      <div class="phone"><img src="../images/neu/anim_luftblasen.webp" width="393" height="852" loading="lazy" alt="Short animation: correct answer, bubbles rise, Ixi cheers"></div>
-    </div>
-    <div>
-      <p class="kicker">The solution</p>
-      <h2>Just one goal: recalling all 100 facts with confidence.</h2>
-      <p class="intro">That is exactly what Ixilotl trains. It uses what makes games so engaging – but aimed at learning instead of ads and purchases. Every correct answer is a small win, with sparkle, sound and a cheering Ixi.</p>
-      <div class="ctas"><a class="btn btn-coral" href="#price">Try it for free</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 Motivation -->
-<section id="motivation">
-  <div class="wrap">
-    <p class="kicker">The heart of it</p>
-    <h2>How Ixilotl motivates</h2>
-    <p class="intro">Everything in the app serves one goal. The game elements keep your child practising – not spending money.</p>
-
-    <div class="phones" style="margin-bottom:34px">
-      <figure><div class="phone"><img src="../images/neu/tier_grimmig.jpg" width="540" height="1171" loading="lazy" alt="Level screen of the 8 times table: the shark still looks grumpy"></div><figcaption class="cap">Still grumpy: the shark guards the 8 times table …</figcaption></figure>
-      <figure><div class="phone"><img src="../images/neu/tier_freund.jpg" width="540" height="1171" loading="lazy" alt="The same shark now smiles, level 3 reached"></div><figcaption class="cap">… one good round later, it's a friend.</figcaption></figure>
-      <figure><div class="phone"><img src="../images/neu/stufen.jpg" width="540" height="1171" loading="lazy" alt="Pufferfish of the 5 times table at level 6 of 10 with a string of pearls"></div><figcaption class="cap">Pearls and levels: a level once reached is never lost.</figcaption></figure>
-    </div>
-
-    <div class="cards">
-      <div class="card"><div class="ico">🦎</div><h3>Ixi as a companion</h3><p>The axolotl talks to your child, celebrates with them and gives short tips and memory aids – without interrupting the round.</p></div>
-      <div class="card"><div class="ico">🐠</div><h3>A sea creature for every table</h3><p>From the clownfish to the deep-sea kraken. The grumpy creature becomes a friend: a clear goal for every table.</p></div>
-      <div class="card"><div class="ico">📿</div><h3>Pearls instead of tests</h3><p>Every good round earns pearls. Practice goes on beyond "I can do it" – until it is effortless.</p></div>
-      <div class="card"><div class="ico">💎</div><h3>Diamonds for improvement</h3><p>Rewards go to getting faster and more confident. Repeating easy questions over and over doesn't pay off.</p></div>
-      <div class="card"><div class="ico">🟩</div><h3>The colour map</h3><p>All 100 facts as tiles that glow brighter with every bit of progress. Gaps are visible at a glance.</p></div>
-      <div class="card"><div class="ico">📅</div><h3>Daily goals without pressure</h3><p>Small tasks for today spread practice over many days. A missed day is never punished.</p></div>
-      <div class="card"><div class="ico">🎨</div><h3>A world of their own</h3><p>Colour worlds, Ixi colours and sounds, earned by practising. Looks only – never for sale for real money.</p></div>
-      <div class="card"><div class="ico">🤗</div><h3>Mistakes without penalty</h3><p>No point deductions, no lives, kind words. Practice without fear, especially for kids who struggle with maths.</p></div>
-    </div>
-
-    <figure style="margin:40px 0 0">
-      <img src="../images/neu/ixi_outfits.webp" width="1400" height="790" loading="lazy" alt="Six Ixis in different colours, some wearing diving goggles or a pirate hat" style="border-radius:20px;margin:0 auto">
-      <figcaption class="cap" style="max-width:none">Ixi the way your child likes him: colours, diving goggles, pirate hat – all earned, nothing bought.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- 5 Understand, then automate -->
-<section class="alt" id="understand">
-  <div class="wrap">
-    <p class="kicker">Learning path</p>
-    <h2>First understand, then automate</h2>
-    <p class="intro">Before it gets fast, it has to be clear what 3 × 4 actually means. That's why every table has two groups of missions.</p>
-    <div class="two">
-      <div class="steps" style="grid-template-columns:1fr">
-        <div class="grp">
-          <h3>Learn</h3>
-          <div class="pills"><span class="pill p1">Discover</span><span class="pill p2">Choice</span><span class="pill p3">Spot the error</span><span class="pill p4">Memory</span></div>
-          <p>In Discover, packets of beads drop into a hundred square. It makes visible what multiplying means – with no time pressure at all.</p>
+  <section class="section" id="app" aria-labelledby="app-h">
+    <div class="wrap">
+      <div class="grid split-phone">
+        <div class="span-6 stack-5">
+          <div class="section-head">
+            <h2 id="app-h">The app rewards every right answer</h2>
+            <p>Ixilotl has one goal: recall all 100 facts of the times tables up to 10 × 10 with confidence. It uses what makes games gripping, aimed at learning instead of ads and purchases.</p>
+          </div>
+          <ul class="app-punkte">
+            <li><b>Zoom, bubbles and confetti</b> for every right answer</li>
+            <li><b>Short missions</b> that fit 5 to 15 minutes a day</li>
+            <li><b>Offline and without an account</b>, progress stays on the device</li>
+          </ul>
         </div>
-        <div class="grp">
-          <h3>Practise</h3>
-          <div class="pills"><span class="pill p5">Forwards</span><span class="pill p2">Mixed</span><span class="pill p3">Backwards</span></div>
-          <p>Recall instead of reciting. Backwards ("? × 5 = 35") counts the most – and prepares for division.</p>
+        <div class="span-5 start-8">
+          <div class="device"><video src="../images/app/richtige_antwort.mp4" width="540" height="1172" preload="metadata" poster="../images/app/richtige_antwort_poster.jpg" autoplay muted loop playsinline aria-label="Right answer 54: the number zooms in large, then bubbles rise over Ixi"></video></div>
         </div>
       </div>
-      <div class="phones">
-        <figure><div class="phone"><img src="../images/neu/entdecken.jpg" width="540" height="1171" loading="lazy" alt="Discover: three packets of three beads each in the hundred square"></div><figcaption class="cap">Discover: 3 packets of 3 beads</figcaption></figure>
-        <figure><div class="phone"><img src="../images/neu/rueckwaerts.jpg" width="540" height="1171" loading="lazy" alt="Backwards question: question mark times 5 equals 35"></div><figcaption class="cap">Backwards: which number is missing?</figcaption></figure>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 6 Parents -->
-<section id="parents">
-  <div class="wrap two">
-    <div>
-      <p class="kicker">For parents</p>
-      <h2>You see what your child sees.</h2>
-      <p class="intro">The colour map and Ixi's "What can I do already?" show learning progress – to you and your child alike.</p>
-      <p><b>No secrets:</b> there is no hidden parent report. Your child may see everything you see – which helps them reflect on their own learning.</p>
-      <p>A short check for adults appears only for grown-up things: sending emails (feedback, securing the gift) and, later, buying the full version.</p>
-    </div>
-    <div class="phones">
-      <figure><div class="phone"><img src="../images/neu/farbkarte.jpg" width="540" height="1171" loading="lazy" alt="Colour map of all times-table facts: many bright and green tiles, a few dark ones such as 7 × 8"></div><figcaption class="cap">Dark tiles show where it still sticks.</figcaption></figure>
-      <figure><div class="phone"><img src="../images/neu/ixi_lob.jpg" width="540" height="1171" loading="lazy" alt="Ixi praises the child for coming back on 6 days and suggests practising 7 × 8"></div><figcaption class="cap">Specific praise and a next step. (App shown in German.)</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- 7 What you won't find -->
-<section class="alt" id="not">
-  <div class="wrap">
-    <p class="kicker">Trust</p>
-    <h2>What you won't find in Ixilotl</h2>
-    <ul class="nots">
-      <li>No ads<small>in any version</small></li>
-      <li>No subscription<small>a one-time purchase instead of monthly payments</small></li>
-      <li>No data collection<small>The app sends no data – no statistics, no analytics. Progress and game data stay on the device. <a href="datenschutz/">Details</a></small></li>
-      <li>No in-game purchases<small>diamonds are earned only by practising</small></li>
-      <li>No loot boxes, no wheels of fortune<small>no chance-based rewards</small></li>
-      <li>No leaderboards<small>every child competes only with themselves</small></li>
-      <li>No chat<small>no contact with strangers</small></li>
-      <li>No account<small>works offline, no sign-up</small></li>
-    </ul>
-  </div>
-</section>
-
-<!-- 8 Price + promise -->
-<section id="price">
-  <div class="wrap">
-    <div class="promise">
-      <div>
-        <p class="kicker" style="color:var(--sand)">Price</p>
-        <h2>Free now – and a gift for early starters.</h2>
-        <p>Ixilotl is free during the open test. Anyone who installs and launches the app by <b>30 November 2026</b> (inclusive) gets the full version as a thank-you gift as soon as it exists. The gift applies as long as Ixilotl stays installed on the device. <a href="../tester-dankeschoen/" style="color:#fff">Terms (German)</a></p>
-        <p>From the sales launch on 1 December 2026, Ixilotl can first be tried for free; after that, the full version is a one-time purchase. No subscription.</p>
-        <p style="font-size:1.08rem;color:#fff;margin-top:18px"><b>Our promise:</b> Ixilotl is a one-time purchase. There is no subscription and there are no paid add-ons. Everything we release for Ixilotl in the future – including new content such as further times tables – comes at no extra cost to owners of the full version.</p>
-        <p style="font-size:.88rem">Which content arrives when is planned, not guaranteed. The promise is about cost: whatever comes costs nothing extra.</p>
-        <p class="sig">– Sebastian Buhl, Sumpfsoftwarestudio, Wiesbaden</p>
-        <div class="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:16px">
-          <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
-          <span class="btn btn-ghost nur-vorab">Coming soon to Google Play</span>
+  <section class="section g2 ground-surface" id="motivation" aria-labelledby="motivation-h">
+    <div class="wrap">
+      <div class="group">
+        <div class="section-head">
+          <h2 id="motivation-h">Game elements that keep children practising. <span class="muted">None of them push spending.</span></h2>
+        </div>
+        <div class="grid">
+          <article class="card card--row card--open span-6">
+            <h3>Ixi's underwater world fills up</h3>
+            <p>On day one only a few animals swim around. With every step forward the world gets busier.</p>
+            <div class="panel phones-panel"><div class="device"><img src="../images/app/klein/welt_start-320.webp" srcset="../images/app/klein/welt_start-180.webp 180w, ../images/app/klein/welt_start-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="The underwater world on day one with few animals"></div><div class="device"><img src="../images/app/klein/welt-320.webp" srcset="../images/app/klein/welt-180.webp 180w, ../images/app/klein/welt-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="The underwater world after three weeks, full of animals"></div></div>
+          </article>
+          <article class="card card--row card--open span-6">
+            <h3>Diamonds for getting better</h3>
+            <p>Your child earns diamonds by making fewer mistakes than in their best attempt. Repeating easy facts does not pay.</p>
+            <div class="panel phones-panel"><div class="device"><img src="../images/app/klein/diamanten-320.webp" srcset="../images/app/klein/diamanten-180.webp 180w, ../images/app/klein/diamanten-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Diamonds of the last 7 days and how to earn them"></div><div class="device"><img src="../images/app/klein/pokale-320.webp" srcset="../images/app/klein/pokale-180.webp 180w, ../images/app/klein/pokale-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Trophies with stamina goals such as days played and missions"></div></div>
+          </article>
         </div>
       </div>
-      <img src="../images/neu/ixi.png" width="420" height="420" loading="lazy" alt="Ixi smiles">
-    </div>
-
-    <!-- 8a Secure the gift -->
-    <div class="gift two" id="gift">
-      <div>
-        <h3>🎁 Keep your gift for good</h3>
-        <ol>
-          <li>In the app: Settings → 🎁 → "Keep your gift for good".</li>
-          <li>Fill in the feedback form, ideally together with your child. Honest criticism helps most.</li>
-          <li>Send it as an adult (adult check, then your email app).</li>
-        </ol>
-        <p>After the sales launch, we send you a Google Play code to your sender address as a voluntary thank-you. Once redeemed in the Play Store, it applies to your Google account – even after reinstalling or on a new phone.</p>
-        <p style="font-size:.88rem">Voluntary, with no legal entitlement: Google limits how many codes we can create. We will do what we can and let you know if there are not enough for everyone. <a href="../tester-dankeschoen/#vorbehalt">Details (German)</a></p>
-        <p class="why"><b>Why by email?</b> Ixilotl has no account and knows neither names nor email addresses. So we don't know who uses the app and couldn't send you a code otherwise. We use your email address for this only: no newsletter, no ads, no sharing. <a href="../tester-dankeschoen/">Terms (German)</a></p>
+      <div class="grid">
+        <article class="card card--row card--open span-6">
+          <h3>Daily tasks without pressure</h3>
+          <p>Small goals for today spread practice over many days. A missed day is never punished.</p>
+          <div class="panel phones-panel"><div class="device"><img src="../images/app/klein/aufgaben-320.webp" srcset="../images/app/klein/aufgaben-180.webp 180w, ../images/app/klein/aufgaben-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Daily tasks with diamonds as rewards"></div><div class="device"><img src="../images/app/klein/tauchpfad-320.webp" srcset="../images/app/klein/tauchpfad-180.webp 180w, ../images/app/klein/tauchpfad-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="The dive path: points take Ixi deeper to find new things"></div></div>
+        </article>
+        <article class="card card--row card--open span-6">
+          <h3>Style Ixi your way</h3>
+          <p>17 colours, diving goggles, a pirate hat and effects, all earned by practising and never for sale.</p>
+          <div class="panel photo-panel"><img src="../images/app/ixi_farben.webp" width="1200" height="672" loading="lazy" alt="Ixi in six colours, with diving goggles and a pirate hat"></div>
+        </article>
       </div>
-      <div class="phones"><div class="phone"><img src="../images/neu/geschenk.jpg" width="540" height="1171" loading="lazy" alt="Settings with the gift tile and the button to secure the gift"></div></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 8b Outlook -->
-<section class="alt" id="outlook">
+  <section class="section" id="lernweg" aria-labelledby="lernweg-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="lernweg-h">Ixilotl targets the facts that are still slow</h2>
+        <p>The app remembers which facts are still slow and brings them back.</p>
+      </div>
+      <div class="grid">
+        <article class="card card--row card--open span-6">
+          <h3>Ixi finds the treasure numbers</h3>
+          <p>That is what Ixi calls the facts that still trip your child up, and suggests practising exactly those.</p>
+          <div class="panel phones-panel"><div class="device"><img src="../images/app/klein/ixi_dialog-320.webp" srcset="../images/app/klein/ixi_dialog-180.webp 180w, ../images/app/klein/ixi_dialog-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="Ixi says a few treasure numbers are still hidden in the 8 times table (app screen in German)"></div></div>
+        </article>
+        <article class="card card--row card--open span-6">
+          <h3>Recall instead of reciting</h3>
+          <p>See the question, tap the answer. What counts is how sure and how fast it is.</p>
+          <div class="panel phones-panel"><div class="device"><img src="../images/app/klein/mission-320.webp" srcset="../images/app/klein/mission-180.webp 180w, ../images/app/klein/mission-320.webp 320w" sizes="(max-width: 639px) 88px, 170px" width="320" height="694" loading="lazy" alt="The question 7 · 6 with a number pad"></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="eltern" aria-labelledby="eltern-h">
+    <div class="wrap">
+      <div class="grid split-phone">
+        <div class="span-6 stack-5">
+          <div class="section-head">
+            <h2 id="eltern-h">The times table map shows what your child knows.</h2>
+            <p>All 100 facts as squares. The colour shows how fast a fact was last answered, from dark through orange to lightning-fast green.</p>
+          </div>
+          <p>Your child sees the same as you; there is no hidden report. A short adult check appears only before the purchase and before emails.</p>
+        </div>
+        <div class="span-5 start-8">
+          <div class="device"><img src="../images/app/einmaleins.webp" width="600" height="1301" loading="lazy" alt="The times table map: the 6, 7 and 8 times tables are still orange"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="preis" aria-labelledby="preis-h">
+    <div class="wrap">
+      <div class="grid split-phone">
+        <div class="span-6 stack-5">
+          <div class="section-head">
+            <h2 id="preis-h">Play for 3 hours, then decide</h2>
+          </div>
+          <p class="hinweis nur-fruehstart"><b>Until 30 November inclusive</b> Ixilotl is completely free. Install by then and keep the full version on that device. <a class="link" href="../tester-dankeschoen/" lang="de">Read the terms (German)</a></p>
+          <ol class="steps3">
+            <li><b>Install</b><p>Free on Google Play, no account.</p></li>
+            <li><b>3 hours of play</b><p>All tables, all missions, nothing locked.</p></li>
+            <li><b>Keep it for €2.99</b><p>A single payment in the parents' area, never a subscription. Final price incl. VAT.</p></li>
+          </ol>
+          <p class="versprechen">Owners of the full version get everything we publish for Ixilotl in the future, new tables included, at no extra cost. <a class="link" href="roadmap/">See what comes next</a><br>– Sebastian Buhl, Sumpfsoftwarestudio, Wiesbaden</p>
+        </div>
+        <div class="span-5 start-8">
+          <img class="ixi-preis" loading="lazy" src="../images/app/ixi_brille.webp" alt="Ixi with diving goggles in the water" width="900" height="705">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vertrauen" aria-labelledby="vertrauen-h">
+    <div class="wrap">
+      <div class="grid split-phone">
+        <div class="span-6 stack-5">
+          <div class="section-head"><h2 id="vertrauen-h">What you won't find in Ixilotl</h2></div>
+          <ul class="nicht">
+            <li><b>No ads</b><span>in any version</span></li>
+            <li><b>No subscription</b><span>buy once, done</span></li>
+            <li><b>No data collection</b><span>The app sends nothing. <a class="link" href="datenschutz/">Privacy</a></span></li>
+            <li><b>No in-game purchases</b><span>diamonds come only from practice</span></li>
+            <li><b>No prize wheels</b><span>no chance in rewards</span></li>
+            <li><b>No leaderboards</b><span>each child practises for themselves</span></li>
+            <li><b>No chat</b><span>no contact with strangers</span></li>
+            <li><b>No account</b><span>works offline, no sign-in</span></li>
+          </ul>
+          <p>Learning and game progress stay on the device. We only receive data if you write to us yourself, for example through the app's feedback form.</p>
+        </div>
+        <div class="span-5 start-8"><img class="ixi-figur" loading="lazy" src="../images/neu/ixi.png" alt="Ixi the axolotl waving" width="420" height="420"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fragen" aria-labelledby="fragen-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="fragen-h">Frequently asked questions</h2></div>
+      <div class="grid grid--top">
+        <div class="faq span-6">
+          <div class="faq__item"><h3>What happens after the 3 hours?</h3><p>The current mission is finished, then Ixilotl shows a certificate with the learning progress. Play continues after the purchase in the parents' area behind the adult check.</p></div>
+          <div class="faq__item"><h3>When does the play time run?</h3><p>While Ixilotl is open. On reading screens with a pause symbol the clock stops.</p></div>
+          <div class="faq__item"><h3>Does the purchase work on a new phone?</h3><p>Yes. The purchase belongs to your Google account and also works after reinstalling. The learning progress stays on the old device, though.</p></div>
+          <div class="faq__item"><h3>Does the app need the internet?</h3><p>No. Ixilotl works offline and without an account. Learning and game progress stay on the device.</p></div>
+        </div>
+        <div class="faq span-6">
+          <div class="faq__item"><h3>Is Ixilotl available for iPhone?</h3><p>Not yet. A version for Apple devices is planned, and so are separate profiles for siblings.</p></div>
+          <div class="faq__item"><h3>Will the app stay as it is?</h3><p>No, it gets regular updates. We never remove content of the full version or charge for it later. <a class="link" href="roadmap/">See what comes next</a></p></div>
+          <div class="faq__item"><h3>Is there a version for schools?</h3><p>It is planned. Ixilotl already works without an account, and results never leave the device. <a class="link" href="mailto:support@ixilotl.de?subject=Ixilotl%20for%20schools">Email us</a></p></div>
+          <div class="faq__item"><h3>Who is behind it?</h3><p>Sebastian Buhl from Wiesbaden, Germany: educator, father, software developer. He knows the problem from teaching, tutoring and the kitchen table.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
   <div class="wrap">
-    <p class="kicker">Outlook</p>
-    <h2>Ixi is getting even better</h2>
-    <div class="next">
-      <div class="card"><h3>In progress: a new underwater world</h3><p>Ixi swims through the world to the times-table creatures. Same learning principle, more movement, more adventure.</p></div>
-      <div class="card"><h3>Planned: the deep sea</h3><p>With times tables 11 to 20 as part of the full version. Install by 30 November and you get the full version as a gift – <a href="#gift">here's how to secure it</a>.</p></div>
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Try Ixilotl for free</h2>
+        <p class="nur-fruehstart">Install by 30 November and get the full version as a gift.</p>
+        <p class="nur-verkauf">3 hours of play with everything included, then €2.99 once.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl">Get it on Google Play<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
-    <div class="phones" style="margin-top:30px">
-      <div class="phone"><img src="../images/neu/welt_polarmeer.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Polar Sea colour world"></div>
-      <div class="phone"><img src="../images/neu/welt_vulkan.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Deep-Sea Volcano colour world"></div>
-      <div class="phone"><img src="../images/neu/welt_schatzwrack.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Treasure Wreck colour world"></div>
-      <div class="phone"><img src="../images/neu/welt_seetangwald.jpg" width="540" height="1171" loading="lazy" alt="Ixilotl in the Kelp Forest colour world"></div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><img src="../images/ixilotl-icon.png" alt="" width="32" height="32" loading="lazy">Ixilotl</a>
+          <p class="footer__lede">The times tables game by Sumpfsoftwarestudio, Wiesbaden.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>App</h3><ul><li><a href="#app">The app</a></li><li><a href="#lernweg">How it teaches</a></li><li><a href="roadmap/">What comes next</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Parents</h3><ul><li><a href="#preis">Price</a></li><li><a href="#fragen">FAQ</a></li><li><a href="../tester-dankeschoen/" lang="de">Tester thank-you (German)</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Legal</h3><ul><li><a href="impressum/">Legal notice</a></li><li><a href="datenschutz/">Privacy policy</a></li><li><a href="nutzungsbedingungen/">Terms of use</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="mailto:support@ixilotl.de">support@ixilotl.de</a></li><li><a href="../" lang="de">Deutsch</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Sumpfsoftwarestudio</span>
+        <div class="socials"></div>
+      </div>
     </div>
-    <p class="cap" style="max-width:none">Already here: colour worlds children earn in the shop.</p>
-    <p style="margin-top:22px"><b>Ixilotl keeps evolving.</b> Updates may change its look and controls considerably – the learning principle stays the same. What stays: we will not take away content of the full version or charge extra for it later. No subscription, no ads, no data collection.</p>
-  </div>
-</section>
-
-<!-- 9 Teachers -->
-<section id="teachers">
-  <div class="wrap two">
-    <div>
-      <p class="kicker">For teachers</p>
-      <h2>Privacy-friendly in class and at home</h2>
-      <p class="intro">Offline and without an account; learning results never leave the device. Every child practises at their own level, without being shown up in front of the class. A school version is planned.</p>
-      <a class="btn btn-coral" href="mailto:support@ixilotl.de?subject=Ixilotl%20for%20schools">Get in touch</a>
-    </div>
-    <div class="phones"><div class="phone"><img src="../images/neu/aufgaben.jpg" width="540" height="1171" loading="lazy" alt="Goals overview with targets such as 150 missions completed and a 7-day streak"></div></div>
-  </div>
-</section>
-
-<!-- 10 About -->
-<section class="alt" id="about">
-  <div class="wrap">
-    <div>
-      <p class="kicker">Who's behind it</p>
-      <h2>Sebastian Buhl, Wiesbaden (Germany)</h2>
-      <p>Educator, father, software developer.</p>
-      <blockquote style="margin:0;font-size:1.12rem;font-style:italic;border-left:4px solid var(--coral);padding-left:16px">"I know the problem from the classroom, from tutoring and from the kitchen table. And I know the learning apps that don't solve it."</blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- 11 FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <h2>Frequently asked questions</h2>
-    <details><summary>What age is it for?</summary><p>For children aged about 6 to 10. Also for brushing up at 11+.</p></details>
-    <details><summary>How long should my child practise each day?</summary><p>5 to 15 minutes is enough. A little regularly works better than a lot occasionally.</p></details>
-    <details><summary>Is Ixilotl available for iPhone and iPad?</summary><p>Not yet. A version for Apple devices is planned.</p></details>
-    <details><summary>Can several children play on one device?</summary><p>Not yet. Separate profiles for siblings are planned.</p></details>
-    <details><summary>Will the app stay the way it looks now?</summary><p>No, Ixilotl is still being developed. Updates may change its look, controls and individual steps considerably. The learning principle stays, and the full version will not get smaller: we will not remove content or charge extra for it later; individual features may be replaced by better ones. It remains: no subscription, no ads, no data collection.</p></details>
-    <details><summary>Does the app need the internet?</summary><p>No. Ixilotl works completely offline and without an account.</p></details>
-    <details><summary>What happens to my child's data?</summary><p>It stays on the device. Ixilotl sends no data – no usage statistics, no crash reports, no advertising. Progress and name never leave the device. We only receive data if you email us yourself, for example via the app's feedback form. More in the <a href="datenschutz/">privacy policy</a>.</p></details>
-  </div>
-</section>
-
-<!-- 12 Final -->
-<section class="final">
-  <div class="wrap">
-    <img src="../images/neu/ixi.png" width="420" height="420" loading="lazy" alt="Ixi smiles">
-    <h2>Ready for times tables without stress?</h2>
-    <p>Try it for free – install by 30 November 2026 and get the full version as a gift.</p>
-    <div class="ctas">
-      <a class="btn btn-store nur-live" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl"><span><small>Free on</small>Google Play</span></a>
-      <span class="btn btn-ghost nur-vorab">Coming soon to Google Play</span>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <span>Ixilotl · Sumpfsoftwarestudio · Sebastian Buhl</span>
-    <span><a href="mailto:support@ixilotl.de">support@ixilotl.de</a> · <a href="../tester-dankeschoen/">Tester thank-you (German)</a> · <a href="datenschutz/">Privacy</a> · <a href="impressum/">Legal notice</a></span>
   </div>
 </footer>
 
+<nav class="actionbar" aria-label="Quick access">
+  <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.ixilotl.ixilotl">Get it on Google Play</a>
+</nav>
+
+<script type="module" src="../assets/system.js"></script>
+<script type="module" src="../assets/motion/motion.js"></script>
+<script type="module" src="../assets/layout/layout.js"></script>
 </body>
 </html>
